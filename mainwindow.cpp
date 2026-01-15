@@ -213,7 +213,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->line_wobphispeed_2->hide();
     ui->push_wid_cass_Calib->hide();
     ui->checkBox_mainvacoff->hide();
-    ui->frame_COMPORTS->hide();
+    ui->groupBox_COMPORTS->hide();
     ui->frame_inifiles->hide();
     ui->push_mot_readrac->hide();
     ui->push_mot_readrac_2->hide();
@@ -11034,8 +11034,8 @@ void MainWindow::setRESLabelRed()
     ui->label_res_LDY->setStyleSheet("QLabel { background-color: red }");
     ui->label_resWCH->setStyleSheet("QLabel { background-color: red }");
     ui->label_WCP->setStyleSheet("QLabel { background-color: red }");
-    ui->label_resMIC->setStyleSheet(backLightGrey);
-    ui->label_resST->setStyleSheet(backLightGrey);
+    // ui->label_resMIC->setStyleSheet(backLightGrey);
+    // ui->label_resST->setStyleSheet(backLightGrey);
     ui->label_res_PAH->setStyleSheet("QLabel { background-color: red }");
     ui->label_resPAP->setStyleSheet("QLabel { background-color: red }");
     ui->label_resPAR->setStyleSheet("QLabel { background-color: red }");
@@ -27429,7 +27429,7 @@ void MainWindow::setusertab(int idx)
     if (serial_feeder->isOpen() == 0) // Feeder Com-Port ist geschlossen
     {
         removetab();
-        //       ui->frame_COMPORTS->show();
+        //       ui->groupBox_COMPORTS->show();
         switch (idx)
         {
         case 0: // kein User angemeldet
@@ -27440,7 +27440,7 @@ void MainWindow::setusertab(int idx)
             ui->label_initok->setStyleSheet(backLightGrey);
             ui->check_resetPW->show();
             ui->frame_setup_files->show();
-            ui->frame_COMPORTS->show();
+            ui->groupBox_COMPORTS->show();
             ui->frame_inifiles->hide();
             ui->frame_port_service->show();
             ui->frame_port_API->show();
@@ -27464,7 +27464,7 @@ void MainWindow::setusertab(int idx)
             break;
         case 2: // User service
             ui->p_LOGIN->setText("login");
-            ui->frame_COMPORTS->show();
+            ui->groupBox_COMPORTS->show();
             ui->frame_port_service->show();
             ui->frame_port_API->show();
             ui->API->setDisabled(true);
@@ -27480,7 +27480,7 @@ void MainWindow::setusertab(int idx)
             ui->label_initok->setStyleSheet(backLightGrey);
             ui->check_resetPW->show();
             //            ui->frame_setup_files->setDisabled(true);
-            ui->frame_COMPORTS->show();
+            ui->groupBox_COMPORTS->show();
             ui->frame_inifiles->hide();
             ui->frame_port_service->show();
             ui->frame_log_servicedata->show();
@@ -27541,7 +27541,7 @@ void MainWindow::setusertab(int idx)
             ui->tabWidget_2->insertTab(ui->tabWidget_2->indexOf(ui->tab_dbg), ui->tab_dbg, "PA_MEAS");
             ui->tabWidget_2->insertTab(ui->tabWidget_2->indexOf(ui->data), ui->data, "data");
             ui->tabWidget_2->insertTab(ui->tabWidget_2->indexOf(ui->tab_err), ui->tab_err, "BUSlog");
-            ui->frame_COMPORTS->show();
+            ui->groupBox_COMPORTS->show();
             ui->frame_port_service->show();
             ui->frame_port_API->show();
             ui->frame_port_MEAS->show();
@@ -27631,7 +27631,7 @@ void MainWindow::setusertab(int idx)
             ui->tabWidget_2->insertTab(ui->tabWidget_2->indexOf(ui->tab_transferpos), ui->tab_transferpos, "Stage");
             // ui->tabWidget_main->insertTab(ui->tabWidget_main->indexOf(ui->tab_dbg),ui->tab_dbg,"PA_MEAS");
             ui->tabWidget_2->insertTab(ui->tabWidget_2->indexOf(ui->tab_err), ui->tab_err, "BUSlog");
-            ui->frame_COMPORTS->show();
+            ui->groupBox_COMPORTS->show();
             ui->frame_port_service->show();
             ui->frame_port_API->show();
             ui->frame_port_MEAS->show();
@@ -27687,7 +27687,7 @@ void MainWindow::setusertab(int idx)
             ui->tabWidget->insertTab(ui->tabWidget->indexOf(ui->VAC), ui->VAC, "VAC");
 
             /* frames Startseite */
-            ui->frame_COMPORTS->show();
+            ui->groupBox_COMPORTS->show();
             ui->frame_port_service->show();
             ui->frame_inifiles->show();
             ui->frame_setup_log->show();
@@ -27762,7 +27762,7 @@ void MainWindow::removetab()
     ui->frame_setup_log->hide();
     ui->frame_setup_first->hide();
     ui->frame_setup_service->hide();
-    ui->frame_COMPORTS->hide();
+    ui->groupBox_COMPORTS->hide();
     ui->frame_port_service->hide();
     ui->frame_port_API->hide();
     ui->frame_port_MEAS->hide();
