@@ -93,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
     newCurve_2 = new QCPCurve(ui->widget_spline_2->xAxis, ui->widget_spline_2->yAxis);
 
     /* ausgeblendete */
-    // ui->buttonGroup->setExclusive(0); // Gruppierung in der mainwindow_ui vornehmen
+    ui->buttonGroup->setExclusive(0); // Gruppierung in der mainwindow_ui vornehmen
     /*ui->hSlide_L1_LDH->installEventFilter(this);
     ui->hSlide_L1_WSH->installEventFilter(this);
     ui->hSlide_L1_operH->installEventFilter(this);
@@ -208,7 +208,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->p_macros_testLDY->setStyleSheet(col_smartred2);
     // ui->checkBox_alignenable->hide();
     ui->label_rotspeed->hide();
-    ui->label_rotspeed_2->hide();
+    // ui->label_rotspeed_2->hide();
     ui->line_wobphispeed->hide();
     ui->line_wobphispeed_2->hide();
     ui->push_wid_cass_Calib->hide();
@@ -242,6 +242,8 @@ MainWindow::MainWindow(QWidget *parent)
     // ui->frame_Tower->hide();
     ui->frame_pa_rot_2->hide();
     ui->groupBox_SMIF_service->hide();
+    ui->groupBox_joy->hide();
+    ui->groupBox_COMPORTS->hide();
     // ui->line_aboveloaderthin->hide();
     // ui->line_aboveloaderthin_2->hide();
     // ui->line_belowloaderthin->hide();
@@ -2812,26 +2814,27 @@ void MainWindow::f_receiveSVC(QByteArray str)
             for (int i = 0; i < parts.count(); i++) {
                 switch (i) {
                 case 0: // Wobbler present
-                    if (parts[i] == "1") {
-                        ui->label_preawobbpresent->setStyleSheet("background-color: green");
+                    if (parts[i] == "1")
+                    {
+                        // ui->label_preawobbpresent->setStyleSheet("background-color: green");
                         ui->p_RES_PREA_TILT_2->setDisabled(0);
                         ui->p_RES_PREA_ROTPOS_2->setDisabled(0);
-                    } else {
-                        ui->label_preawobbpresent->setStyleSheet("background-color: Red");
+                    }
+                    else
+                    {
+                        // ui->label_preawobbpresent->setStyleSheet("background-color: Red");
                         ui->p_RES_PREA_ROTPOS_2->setDisabled(0);
                         ui->p_RES_PREA_TILT_2->setDisabled(1);
                         ui->p_RES_PREA_ROTPOS_2->setDisabled(1);
-                        ui->label_resPAR->setStyleSheet(
-                                    "QLabel { background-color: grey }");
-                        ui->label_resPAT->setStyleSheet(
-                                    "QLabel { background-color: grey }");
+                        ui->label_resPAR->setStyleSheet("QLabel { background-color: grey }");
+                        ui->label_resPAT->setStyleSheet("QLabel { background-color: grey }");
                     }
                     break;
                 case 1: // Below LO height
                     ui->line_belowloader_2->setPalette(palSchrift);
-                    ui->line_belowloader_4->setPalette(palSchrift);
+                    // ui->line_belowloader_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_belowloader_4->setText(QString::number(tmpfloat, 'f', 3));
+                    // ui->line_belowloader_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_belowloader_2->setText(parts[i]);
                     break;
                 case 2: // Below LO height thin
@@ -2840,9 +2843,9 @@ void MainWindow::f_receiveSVC(QByteArray str)
                     break;
                 case 3: // LO height
                     ui->line_loaderheight_2->setPalette(palSchrift);
-                    ui->line_loaderheight_4->setPalette(palSchrift);
+                    // ui->line_loaderheight_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_loaderheight_4->setText(QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loaderheight_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loaderheight_2->setText(parts[i]);
                     break;
                 case 4: // Above LO height thin
@@ -2851,37 +2854,37 @@ void MainWindow::f_receiveSVC(QByteArray str)
                     break;
                 case 5: // Above LO height
                     ui->line_aboveloader_2->setPalette(palSchrift);
-                    ui->line_aboveloader_4->setPalette(palSchrift);
+                    // ui->line_aboveloader_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_aboveloader_4->setText(QString::number(tmpfloat, 'f', 3));
+                    // ui->line_aboveloader_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_aboveloader_2->setText(parts[i]);
                     break;
                 case 6: // PA height
                     ui->line_preaheight_2->setPalette(palSchrift);
-                    ui->line_preaheight_4->setPalette(palSchrift);
+                    // ui->line_preaheight_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_preaheight_4->setText(QString::number(tmpfloat, 'f', 3));
+                    // ui->line_preaheight_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_preaheight_2->setText(parts[i]);
                     break;
                 case 7: // CH height
                     ui->line_chuckheight_2->setPalette(palSchrift);
-                    ui->line_chuckheight_4->setPalette(palSchrift);
+                    // ui->line_chuckheight_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_chuckheight_4->setText(QString::number(tmpfloat, 'f', 3));
+                    // ui->line_chuckheight_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_chuckheight_2->setText(parts[i]);
                     break;
                 case 8: // WO angle
                     ui->line_wobbtiltangle_2->setPalette(palSchrift);
-                    ui->line_wobbtiltangle_4->setPalette(palSchrift);
+                    // ui->line_wobbtiltangle_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoWOP;
-                    ui->line_wobbtiltangle_4->setText(QString::number(tmpfloat, 'f', 3));
+                    // ui->line_wobbtiltangle_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_wobbtiltangle_2->setText(parts[i]);
                     break;
                 case 9: // WO rotational position
                     ui->line_wobrotpos_2->setPalette(palSchrift);
-                    ui->line_wobrotpos_4->setPalette(palSchrift);
+                    // ui->line_wobrotpos_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoWOR;
-                    ui->line_wobrotpos_4->setText(QString::number(tmpfloat, 'f', 3));
+                    // ui->line_wobrotpos_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_wobrotpos_2->setText(parts[i]);
                     break;
                 case 10: // Measurement present
@@ -2892,9 +2895,9 @@ void MainWindow::f_receiveSVC(QByteArray str)
                     break;
                 case 11: // PA angle
                     ui->line_preasensangle_2->setPalette(palSchrift);
-                    ui->line_preasensangle_4->setPalette(palSchrift);
+                    // ui->line_preasensangle_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoP;
-                    ui->line_preasensangle_4->setText(QString::number(tmpfloat, 'f', 3));
+                    // ui->line_preasensangle_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_preasensangle_2->setText(parts[i]);
                     break;
                 case 12: // PA precount
@@ -2918,19 +2921,17 @@ void MainWindow::f_receiveSVC(QByteArray str)
                     ui->line_readdispl->setText(parts[i]);
                     break;
                 case 17: // Wobbler displacement
-                    ui->line_wobbdispl->setPalette(palSchrift);
-                    ui->line_wobbdispl->setText(parts[i]);
+                    // ui->line_wobbdispl->setPalette(palSchrift);
+                    // ui->line_wobbdispl->setText(parts[i]);
                     break;
                 case 18: // Normal displacement
-                    ui->line_normaldispl->setPalette(palSchrift);
-                    ui->line_normaldispl->setText(parts[i]);
+                    // ui->line_normaldispl->setPalette(palSchrift);
+                    // ui->line_normaldispl->setText(parts[i]);
                     break;
                 case 19: // Profilecalibration
                     ui->line_preaheight_2->setPalette(palSchrift);
-                    if (parts[i] == "Y")
-                        ui->check_profilecalib->setChecked(1);
-                    else
-                        ui->check_profilecalib->setChecked(0);
+                    if (parts[i] == "Y") ui->check_profilecalib->setChecked(1);
+                    else ui->check_profilecalib->setChecked(0);
                     break;
                 case 20: // Slitlength
                     ui->line_slitlenght->setPalette(palSchrift);
@@ -2971,8 +2972,7 @@ void MainWindow::f_receiveSVC(QByteArray str)
                     ui->line_wc_abovechuckheight_2->setPalette(palSchrift);
                     ui->line_wc_abovechuckheight_5->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_wc_abovechuckheight_5->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    ui->line_wc_abovechuckheight_5->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_wc_abovechuckheight_2->setText(parts[i]);
                     break;
                 case 3: // WC_Ch_height
@@ -10038,16 +10038,12 @@ void MainWindow::f_APIid(QString apidata, bool err) //
         break;
     case cSETCAR:
         APIid = none;
-        if (assistant_wc)
-            assistant_loop(assistant_wc);
-        else if (macro_profil)
-            macroProfil(true);
+        if (assistant_wc) assistant_loop(assistant_wc);
+        else if (macro_profil) macroProfil(true);
         break;
     case cINIT:
-        if (err)
-            ui->label_initok->setStyleSheet("background-color: red");
-        else
-            ui->label_initok->setStyleSheet("background-color: green");
+        if (err) ui->label_initok->setStyleSheet("background-color: red");
+        else ui->label_initok->setStyleSheet("background-color: green");
         APIid = none;
         break;
     case cSETOUT:
@@ -10063,57 +10059,46 @@ void MainWindow::f_APIid(QString apidata, bool err) //
         break;
     case cGETA:
         APIid = none;
-        if (assistant_wc)
-            assistant_loop(assistant_wc);
-        else if (macro_profil)
-            macroProfil(true);
-        else
-            on_p_API_Put_clicked(); // direkt zurück in den Lift/Slot
-        if (API_LOOP)
-            apiloopcpl = 1;
+        if (assistant_wc) assistant_loop(assistant_wc);
+        else if (macro_profil) macroProfil(true);
+        else on_p_API_Put_clicked(); // direkt zurück in den Lift/Slot
+        if (API_LOOP) apiloopcpl = 1;
         break;
     case cPUT:
         APIid = none;
-        if (API_LOOP) {
+        if (API_LOOP)
+        {
             static int count = 0;
-            if (apiloopcpl) {
+            if (apiloopcpl)
+            {
                 count++;
                 ui->label_API_loopcnt->setText(QString::number(count));
                 apiloopcpl = 0;
             }
             int cycles = ui->line_API_setloopcnt->text().toInt(&ok, 10);
-            if (count < cycles)
-                api_loop();
-            else
-                on_p_API_START_clicked(0);
-        } else
-            PAwaf = idxwaf; // wafSlotnr auf Aligner
-        if (assistant_wc)
-            assistant_loop(assistant_wc);
-        else if (macro_profil)
-            macroProfil(true);
+            if (count < cycles) api_loop();
+            else on_p_API_START_clicked(0);
+        }
+        else PAwaf = idxwaf; // wafSlotnr auf Aligner
+        if (assistant_wc) assistant_loop(assistant_wc);
+        else if (macro_profil) macroProfil(true);
         break;
     case cALIGN:
         APIid = none;
-        if (API_LOOP)
-            api_loop();
-        else if (assistant_wc)
-            assistant_loop(assistant_wc);
-        else if (macro_profil)
-            macroProfil(true);
+        if (API_LOOP) api_loop();
+        else if (assistant_wc) assistant_loop(assistant_wc);
+        else if (macro_profil) macroProfil(true);
         break;
     case cSETALROT:
         APIid = none;
         break;
     case cSTARTMACRO:
         APIid = none;
-        if (API_LOOP)
-            api_loop();
+        if (API_LOOP) api_loop();
         break;
     case cSTOPMACRO:
         APIid = none;
-        if (API_LOOP)
-            api_loop();
+        if (API_LOOP) api_loop();
         break;
     case cPREWCup:
         APIid = none;
@@ -10127,10 +10112,8 @@ void MainWindow::f_APIid(QString apidata, bool err) //
         CHwaf = PAwaf;
         PAwaf = tmpvar;
         APIid = none;
-        if (assistant_wc)
-            assistant_loop(assistant_wc);
-        if (API_LOOP)
-            api_loop();
+        if (assistant_wc) assistant_loop(assistant_wc);
+        if (API_LOOP) api_loop();
         break;
     case cGETMAP:
         qDebug() << "lift" << lift << "slots" << slotmap;
@@ -10964,44 +10947,37 @@ void MainWindow::f_APIid(QString apidata, bool err) //
         break;
     case cGETFNRES:
         qDebug() << "x offset" << parts[0] << "y offset" << parts[1];
-        if (parts.count() == 2) {
+        if (parts.count() == 2)
+        {
             ui->line_api_getfnres_x->setText(parts[0]);
-            ui->line_api_getfnres_y->setText(
-                        parts[1].mid(parts[1].indexOf("=") + 1, -1));
+            ui->line_api_getfnres_y->setText(parts[1].mid(parts[1].indexOf("=") + 1, -1));
         }
         APIid = none;
-        if (assistant_wc)
-            assistant_loop(assistant_wc);
+        if (assistant_wc) assistant_loop(assistant_wc);
         break;
     case cUNLOAD:
         APIid = none;
-        if (assistant_wc)
-            assistant_loop(assistant_wc);
-        else if (macro_profil)
-            macroProfil(true);
-        else {
+        if (assistant_wc) assistant_loop(assistant_wc);
+        else if (macro_profil) macroProfil(true);
+        else
+        {
             deselslot();
-            if (ui->check_lift2_deactivate->text() == "set deactive")
-                ui->groupBox_Lift2->setEnabled(true);
+            if (ui->check_lift2_deactivate->text() == "set deactive") ui->groupBox_Lift2->setEnabled(true);
             ui->groupBox_Lift1->setEnabled(true);
         }
         break;
     case cLOAD:
         APIid = none;
-        if (assistant_wc)
-            assistant_loop(assistant_wc);
-        else if (macro_profil)
-            macroProfil(true);
+        if (assistant_wc) assistant_loop(assistant_wc);
+        else if (macro_profil) macroProfil(true);
         break;
     case cSETLAMP:
         APIid = none;
         break;
     case cSERVICE:
         APIid = none;
-        if (ui->check_API_servicemode->isChecked())
-            ui->check_API_servicemode->setStyleSheet(backLightGreen);
-        else
-            ui->check_API_servicemode->setStyleSheet(backLightGrey);
+        if (ui->check_API_servicemode->isChecked()) ui->check_API_servicemode->setStyleSheet(backLightGreen);
+        else ui->check_API_servicemode->setStyleSheet(backLightGrey);
         break;
     case cTWI:
         APIid = none;
@@ -11043,66 +11019,67 @@ void MainWindow::setRESLabelRed()
 }
 void MainWindow::setStyleSheets()
 {
-    palBackground.setColor(QPalette::Base, QColor(45, 45, 255));
-    palBackground2.setColor(QPalette::Base, QColor(45, 45, 10));
-    palSchrift.setColor(
-                QPalette::Text,
-                QColor(0, 0, 255)); // blaue Schrift für zurück gelesene Parameter
-    palSchrift0.setColor(QPalette::Text,
-                         QColor(0, 0, 0)); // schwarze Schrift für ini-Daten
-    ui->p_help_cass->setStyleSheet("color: blue");
-    ui->tabWidget->setStyleSheet(col_Beige);
-    ui->tabWidget_2->setStyleSheet(col_Grey);
+    qApp->setStyleSheet("QLineEdit { background-color: yellow }");
 
-    QPalette palette;
-    palette.setColor(QPalette::Base, QColor(251, 251, 251));
-    ui->line_cassname->setStyleSheet(col_greywhite);
-    ui->lineCass_numbSlots->setStyleSheet(col_greywhite);
-    ui->line_cassid->setStyleSheet(col_greywhite);
-    ui->spinCass_SlotPos->setStyleSheet(col_greywhite);
-    ui->spinCass_SlotDist->setStyleSheet(col_greywhite);
-    ui->spinCass_SlotWdw->setStyleSheet(col_greywhite);
-    ui->spinCass_WafSizeWdw->setStyleSheet(col_greywhite);
-    ui->spinCass_WafheightOff->setStyleSheet(col_greywhite);
-    ui->spinCass_fingerHeightOff->setStyleSheet(col_greywhite);
-    ui->spinCass_firstSlot->setStyleSheet(col_greywhite);
-    ui->lineCass_actHeightPos->setStyleSheet(col_greywhite);
-    ui->lineCass_actpos_mm->setStyleSheet(col_greywhite);
-    ui->lineL1_maplist->setStyleSheet(col_greywhite);
-    ui->line_align_displ->setStyleSheet(col_greywhite);
+    // palBackground.setColor(QPalette::Base, QColor(45, 45, 255));
+    // palBackground2.setColor(QPalette::Base, QColor(45, 45, 10));
+    // palSchrift.setColor(QPalette::Text, QColor(0, 0, 255)); // blaue Schrift für zurück gelesene Parameter
+    // palSchrift0.setColor(QPalette::Text,QColor(0, 0, 0)); // schwarze Schrift für ini-Daten
+    // ui->p_help_cass->setStyleSheet("color: blue");
+    // ui->tabWidget->setStyleSheet(col_Beige);
+    // ui->tabWidget_2->setStyleSheet(col_Grey);
+
+    // QPalette palette;
+    // palette.setColor(QPalette::Base, QColor(251, 251, 251));
+    // ui->line_cassname->setStyleSheet(col_greywhite);
+    // ui->lineCass_numbSlots->setStyleSheet(col_greywhite);
+    // ui->line_cassid->setStyleSheet(col_greywhite);
+    // ui->spinCass_SlotPos->setStyleSheet(col_greywhite);
+    // ui->spinCass_SlotDist->setStyleSheet(col_greywhite);
+    // ui->spinCass_SlotWdw->setStyleSheet(col_greywhite);
+    // ui->spinCass_WafSizeWdw->setStyleSheet(col_greywhite);
+    // ui->spinCass_WafheightOff->setStyleSheet(col_greywhite);
+    // ui->spinCass_fingerHeightOff->setStyleSheet(col_greywhite);
+    // ui->spinCass_firstSlot->setStyleSheet(col_greywhite);
+    // ui->lineCass_actHeightPos->setStyleSheet(col_greywhite);
+    // ui->lineCass_actpos_mm->setStyleSheet(col_greywhite);
+    // ui->lineL1_maplist->setStyleSheet(col_greywhite);
+    // ui->line_align_displ->setStyleSheet(col_greywhite);
 }
 void MainWindow::setStyleSheetFrames()
 {
-    ui->plainText_sendlog->setStyleSheet(col_greywhite);
-    ui->frame_cass_select->setStyleSheet(col_Beigeframe);
-    //    ui->frame_SMIF1->setStyleSheet(col_Beigeframe);
-    ui->frame_SMIF1_status->setStyleSheet(col_Beigeframe);
-    ui->frame_cass_copy->setStyleSheet(col_Beigeframe);
-    ui->frame_cass_go->setStyleSheet(col_Beigeframe);
-    ui->frame_cass_set->setStyleSheet(col_Beigeframe);
-    ui->frame_cass_pos->setStyleSheet(col_Beigeframe);
-    ui->frame_cass_release->setStyleSheet(col_Beigeframe);
-    ui->frame_loader_posx->setStyleSheet(col_Beigeframe);
-    ui->frame_loader_posy->setStyleSheet(col_Beigeframe);
-    ui->frame_lift1_postilt->setStyleSheet(col_Beigeframe);
-    ui->frame_lift1_posheight->setStyleSheet(col_Beigeframe);
-    ui->frame_cass_map->setStyleSheet(col_Beigeframe);
-    ui->frame_lift2_posheight->setStyleSheet(col_Beigeframe);
-    ui->frame_lift2_postilt->setStyleSheet(col_Beigeframe);
-    ui->frame_pa_height->setStyleSheet(col_Beigeframe);
-    ui->frame_pa_phi->setStyleSheet(col_Beigeframe);
-    ui->frame_pa_tilt->setStyleSheet(col_Beigeframe);
-    ui->frame_pa_rot->setStyleSheet(col_Beigeframe);
-    ui->frame_wc_height->setStyleSheet(col_Beigeframe);
-    ui->frame_wc_phi->setStyleSheet(col_Beigeframe);
-    ui->frame_log_servicedata->setStyleSheet(col_Beigeframe);
-    ui->frame_vac_setup->setStyleSheet(col_Beigeframe);
-    ui->frame_vac_set->setStyleSheet(col_Beigeframe);
-    ui->spinBox_sourcecass->setStyleSheet(col_Beigeframe);
-    ui->spinBox_destinationcass->setStyleSheet(col_Beigeframe);
-    ui->toolBox_macro->setStyleSheet(col_Beigeframe);
-    ui->pacmds->setStyleSheet(col_Beigeframe);
-    ui->frame_aligner_set->setStyleSheet(col_Beigeframe);
+
+
+    // ui->plainText_sendlog->setStyleSheet(col_greywhite);
+    // ui->frame_cass_select->setStyleSheet(col_Beigeframe);
+    // //    ui->frame_SMIF1->setStyleSheet(col_Beigeframe);
+    // ui->frame_SMIF1_status->setStyleSheet(col_Beigeframe);
+    // ui->frame_cass_copy->setStyleSheet(col_Beigeframe);
+    // ui->frame_cass_go->setStyleSheet(col_Beigeframe);
+    // ui->frame_cass_set->setStyleSheet(col_Beigeframe);
+    // ui->frame_cass_pos->setStyleSheet(col_Beigeframe);
+    // ui->frame_cass_release->setStyleSheet(col_Beigeframe);
+    // ui->frame_loader_posx->setStyleSheet(col_Beigeframe);
+    // ui->frame_loader_posy->setStyleSheet(col_Beigeframe);
+    // ui->frame_lift1_postilt->setStyleSheet(col_Beigeframe);
+    // ui->frame_lift1_posheight->setStyleSheet(col_Beigeframe);
+    // ui->frame_cass_map->setStyleSheet(col_Beigeframe);
+    // ui->frame_lift2_posheight->setStyleSheet(col_Beigeframe);
+    // ui->frame_lift2_postilt->setStyleSheet(col_Beigeframe);
+    // // ui->frame_pa_height->setStyleSheet(col_Beigeframe);
+    // // ui->frame_pa_phi->setStyleSheet(col_Beigeframe);
+    // // ui->frame_pa_tilt->setStyleSheet(col_Beigeframe);
+    // // ui->frame_pa_rot->setStyleSheet(col_Beigeframe);
+    // ui->frame_wc_height->setStyleSheet(col_Beigeframe);
+    // ui->frame_wc_phi->setStyleSheet(col_Beigeframe);
+    // ui->frame_log_servicedata->setStyleSheet(col_Beigeframe);
+    // ui->frame_vac_setup->setStyleSheet(col_Beigeframe);
+    // ui->frame_vac_set->setStyleSheet(col_Beigeframe);
+    // ui->spinBox_sourcecass->setStyleSheet(col_Beigeframe);
+    // ui->spinBox_destinationcass->setStyleSheet(col_Beigeframe);
+    // ui->toolBox_macro->setStyleSheet(col_Beigeframe);
+    // ui->pacmds->setStyleSheet(col_Beigeframe);
+    // ui->frame_aligner_set->setStyleSheet(col_Beigeframe);
 }
 void MainWindow::APIstatus()
 {
@@ -12161,11 +12138,11 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                                     on_check_wob_deactiv_toggled(1);
                                     ui->p_RES_PREA_TILT->setDisabled(0);
                                     ui->p_RES_PREA_ROTPOS->setDisabled(0);
-                                    ui->frame_wobble->setDisabled(0);
+                                    // ui->frame_wobble->setDisabled(0);
                                     ui->p_INIT_PA_Tilt->setDisabled(0);
                                     ui->p_INIT_PA_RotPos->setDisabled(0);
-                                    ui->frame_pa_rot->setDisabled(0);
-                                    ui->frame_pa_tilt->setDisabled(0);
+                                    // ui->frame_pa_rot->setDisabled(0);
+                                    // ui->frame_pa_tilt->setDisabled(0);
                                     ui->check_API_loop_macro->setDisabled(0);
                                 }
                                 else
@@ -12174,11 +12151,11 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                                     on_check_wob_deactiv_toggled(0);
                                     ui->p_RES_PREA_TILT->setDisabled(1);
                                     ui->p_RES_PREA_ROTPOS->setDisabled(1);
-                                    ui->frame_wobble->setDisabled(1);
+                                    // ui->frame_wobble->setDisabled(1);
                                     ui->p_INIT_PA_Tilt->setDisabled(1);
                                     ui->p_INIT_PA_RotPos->setDisabled(1);
-                                    ui->frame_pa_rot->setDisabled(1);
-                                    ui->frame_pa_tilt->setDisabled(1);
+                                    // ui->frame_pa_rot->setDisabled(1);
+                                    // ui->frame_pa_tilt->setDisabled(1);
                                     ui->label_resPAR->setStyleSheet("QLabel { background-color: grey }");
                                     ui->label_resPAT->setStyleSheet("QLabel { background-color: grey }");
                                     ui->check_API_loop_macro->setDisabled(1);
@@ -12257,10 +12234,10 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                                 ui->line_readdispl->setText(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                                 break;
                             case 17: // Wobbler displacement
-                                ui->line_wobbdispl->setText(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
+                                // ui->line_wobbdispl->setText(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                                 break;
                             case 18: // Normal displacement
-                                ui->line_normaldispl->setText(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
+                                // ui->line_normaldispl->setText(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                                 break;
                             case 19: // Profilecalibration
                                 if (line.mid(line.indexOf("=") + 1, 1) == "Y") ui->check_profilecalib->setChecked(1);
@@ -14266,14 +14243,14 @@ void MainWindow::STORE_FILE_partPREAS() // schreibt Prea-Daten ins INSSETUP.INI 
                             }
                             else if (line.mid(0, line.indexOf('=')).toLower() == "wobbler displacement")
                             {
-                                QString tVAL = line.mid(0, line.indexOf("=") + 1).append(ui->line_wobbdispl->text());
+                                QString tVAL = line.mid(0, line.indexOf("=") + 1).append("0");
                                 qDebug() << tVAL;
                                 if (tVAL.contains(",")) tVAL.replace(tVAL.indexOf(","), 1, ".");
                                 dataout << tVAL.append('\n');
                             }
                             else if (line.mid(0, line.indexOf('=')).toLower() == "normal displacement")
                             {
-                                QString tVAL = line.mid(0, line.indexOf("=") + 1).append(ui->line_normaldispl->text());
+                                QString tVAL = line.mid(0, line.indexOf("=") + 1).append("0");
                                 qDebug() << tVAL;
                                 if (tVAL.contains(",")) tVAL.replace(tVAL.indexOf(","), 1, ".");
                                 dataout << tVAL.append('\n');
@@ -16356,21 +16333,21 @@ void MainWindow::SETUP_FILE_partPA() // liest PA INI-Daten in die Maske ein
                         {
                             ui->check_wob_deactiv->setChecked(1);
                             on_check_wob_deactiv_toggled(1);
-                            ui->frame_wobble->setDisabled(0);
+                            // ui->frame_wobble->setDisabled(0);
                             ui->p_INIT_PA_Tilt->setDisabled(0);
                             ui->p_INIT_PA_RotPos->setDisabled(0);
-                            ui->frame_pa_rot->setDisabled(0);
-                            ui->frame_pa_tilt->setDisabled(0);
+                            // ui->frame_pa_rot->setDisabled(0);
+                            // ui->frame_pa_tilt->setDisabled(0);
                         }
                         else if (line.mid(line.indexOf("=") + 1, 1) == "0")
                         {
                             ui->check_wob_deactiv->setChecked(0);
                             on_check_wob_deactiv_toggled(0);
-                            ui->frame_wobble->setDisabled(1);
+                            // ui->frame_wobble->setDisabled(1);
                             ui->p_INIT_PA_Tilt->setDisabled(1);
                             ui->p_INIT_PA_RotPos->setDisabled(1);
-                            ui->frame_pa_rot->setDisabled(1);
-                            ui->frame_pa_tilt->setDisabled(1);
+                            // ui->frame_pa_rot->setDisabled(1);
+                            // ui->frame_pa_tilt->setDisabled(1);
                         }
                         tempwc1.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
@@ -16432,37 +16409,37 @@ void MainWindow::SETUP_FILE_partPA() // liest PA INI-Daten in die Maske ein
                         ui->line_wobbtiltangle->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
                         tempwc9.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
-                    else if (line.mid(0, line.indexOf('=')).toLower() == "wo rotational position") {
+                    else if (line.mid(0, line.indexOf('=')).toLower() == "wo rotational position")
+                    {
                         val = linestr.toFloat(&ok) / tmpResoWOR;
                         qDebug() << "set wo rotational position" << tmpResoWOR << "linestr"
                                  << linestr << "val" << val;
                         ui->line_wobrotpos_3->setText(QString::number(val, 'f', 3));
-                        ui->line_wobrotpos->setText(
-                                    line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
-                        tempwc10.append(
-                                    line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
+                        ui->line_wobrotpos->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        tempwc10.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
-                    else if (line.mid(0, line.indexOf('=')).toLower() == "measurement present") {
-                        if (line.mid(line.indexOf('=') + 1, 1) == "1")
-                            ui->check_measureused->setChecked(1);
-                        else
-                            ui->check_measureused->setChecked(0);
-                        tempwc11.append(
-                                    line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
+                    else if (line.mid(0, line.indexOf('=')).toLower() == "measurement present")
+                    {
+                        if (line.mid(line.indexOf('=') + 1, 1) == "1") ui->check_measureused->setChecked(1);
+                        else ui->check_measureused->setChecked(0);
+                        tempwc11.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
-                    else if (line.mid(0, line.indexOf('=')).toLower() == "pa angle") {
+                    else if (line.mid(0, line.indexOf('=')).toLower() == "pa angle")
+                    {
                         val = linestr.toFloat(&ok) / tmpResoPAP;
                         ui->line_preasensangle_3->setText(QString::number(val, 'f', 3));
                         ui->line_preasensangle->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
                         tempwc12.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
-                    else if (line.mid(0, line.indexOf('=')).toLower() == "pa precount") {
+                    else if (line.mid(0, line.indexOf('=')).toLower() == "pa precount")
+                    {
                         val = linestr.toFloat(&ok) / tmpResoPAP;
                         ui->line_preaprecount_3->setText(QString::number(val, 'f', 3));
                         ui->line_preaprecount->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
                         tempwc13.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
-                    else if (line.mid(0, line.indexOf('=')).toLower() == "pa count") {
+                    else if (line.mid(0, line.indexOf('=')).toLower() == "pa count")
+                    {
                         val = linestr.toFloat(&ok) / tmpResoPAP;
                         ui->line_preacount_3->setText(QString::number(val, 'f', 3));
                         ui->line_preacount->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
@@ -16475,8 +16452,7 @@ void MainWindow::SETUP_FILE_partPA() // liest PA INI-Daten in die Maske ein
                         tempwc15.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
                     else if (line.mid(0, line.indexOf('=')).toLower() == "align to front") {
-                        qDebug() << "read align to front"
-                                 << line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed();
+                        qDebug() << "read align to front" << line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed();
                         ui->line_wobphispeed->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
                         tempwc16.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
@@ -16487,17 +16463,13 @@ void MainWindow::SETUP_FILE_partPA() // liest PA INI-Daten in die Maske ein
                     }
                     else if (line.mid(0, line.indexOf('=')).toLower() == "wobbler displacement")
                     {
-                        ui->line_wobbdispl->setText(
-                                    line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
-                        tempwc18.append(
-                                    line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
+                        // ui->line_wobbdispl->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        tempwc18.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
                     else if (line.mid(0, line.indexOf('=')).toLower() == "normal displacement")
                     {
-                        ui->line_normaldispl->setText(
-                                    line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
-                        tempwc19.append(
-                                    line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
+                        // ui->line_normaldispl->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        tempwc19.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
                     else if (line.mid(0, line.indexOf('=')).toLower() == "profilecalibration")
                     {
@@ -16505,7 +16477,8 @@ void MainWindow::SETUP_FILE_partPA() // liest PA INI-Daten in die Maske ein
                         else ui->check_profilecalib->setChecked(0);
                         tempwc20.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
-                    else if (line.mid(0, line.indexOf('=')).toLower() == "slitlength") {
+                    else if (line.mid(0, line.indexOf('=')).toLower() == "slitlength")
+                    {
                         ui->line_slitlenght->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
                         tempwc21.append(line.mid(line.indexOf("=") + 1, line.indexOf('\n')).trimmed());
                     }
@@ -17611,45 +17584,44 @@ void MainWindow::setFlags(int flag)
 void MainWindow::on_check_voltagedc_clicked(bool checked) // DC
 {
     resetFlags();
-    if (checked)
-        setFlags(1);
+    if (checked) setFlags(1);
     lastcheckbutton = ui->buttonGroup->checkedId();
 }
 void MainWindow::on_check_Temperatur_clicked(bool checked) // TP
 {
     resetFlags();
-    if (checked)
-        setFlags(2);
+    if (checked) setFlags(2);
     lastcheckbutton = ui->buttonGroup->checkedId();
 }
 void MainWindow::on_check_Sensor_clicked(bool checked) // PS
 {
     resetFlags();
-    if (checked)
-        setFlags(9);
+    if (checked) setFlags(9);
     lastcheckbutton = ui->buttonGroup->checkedId();
 }
-void MainWindow::on_check_EMO_clicked(bool checked) {
+void MainWindow::on_check_EMO_clicked(bool checked)
+{
     resetFlags();
-    if (checked)
-        setFlags(12);
+    if (checked) setFlags(12);
     lastcheckbutton = ui->buttonGroup->checkedId();
 }
 void MainWindow::on_check_vac_clicked(bool checked) // Vac units
 {
     qDebug() << "on_check_vac_clicked" << checked;
     resetFlags();
-    if (checked)
-        setFlags(3);
+    if (checked) setFlags(3);
     lastcheckbutton = ui->buttonGroup->checkedId();
 }
 void MainWindow::on_check_LaserIntensity_clicked() // MS
 {
     err_msgboxSysSenscalOK("select lift1 or lift2");
-    if (calsens) {
+    if (calsens)
+    {
         macroL1sens = TRUE;
         on_push_lift1_cal_intensity_clicked();
-    } else if (calsens2) {
+    }
+    else if (calsens2)
+    {
         macroL2sens = TRUE;
         on_push_lift2_cal_intensity_clicked();
     }
@@ -17657,15 +17629,13 @@ void MainWindow::on_check_LaserIntensity_clicked() // MS
 void MainWindow::on_check_WaferSensor_clicked(bool checked) // WS
 {
     resetFlags();
-    if (checked)
-        setFlags(4);
+    if (checked) setFlags(4);
     lastcheckbutton = ui->buttonGroup->checkedId();
 }
 void MainWindow::on_check_motvoltage_clicked(bool checked) // MV
 {
     resetFlags();
-    if (checked)
-        setFlags(6);
+    if (checked) setFlags(6);
     lastcheckbutton = ui->buttonGroup->checkedId();
 }
 void MainWindow::on_check_ports_clicked() // IO
@@ -19152,7 +19122,8 @@ void MainWindow::on_p_PA_hgt_clicked() {
     tmpstr.append("\r\n");
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_PA_SnesAngle_clicked() {
+void MainWindow::on_p_PA_SnesAngle_clicked()
+{
     tmpstr = 0;
     ui->line_preasensangle->setInputMask("#99999");
     QString tmp = ui->line_preasensangle->text();
@@ -19162,10 +19133,14 @@ void MainWindow::on_p_PA_SnesAngle_clicked() {
     tmpstr.append("\r\n");
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_PA_count_clicked() { err_msgbox("not in use"); }
-void MainWindow::on_p_PA_precount_clicked() { err_msgbox("not in use"); }
-void MainWindow::on_p_PA_postcount_clicked() { err_msgbox("not in use"); }
-void MainWindow::on_p_PA_WOtilt_clicked() {
+// void MainWindow::on_p_PA_count_clicked()
+// { err_msgbox("not in use"); }
+// void MainWindow::on_p_PA_precount_clicked()
+// { err_msgbox("not in use"); }
+// void MainWindow::on_p_PA_postcount_clicked()
+// { err_msgbox("not in use"); }
+void MainWindow::on_p_PA_WOtilt_clicked()
+{
     tmpstr = 0;
     //   ui->line_wobbtiltangle->setInputMask("#99999");
     QString tmp = ui->line_wobbtiltangle->text();
@@ -19175,7 +19150,8 @@ void MainWindow::on_p_PA_WOtilt_clicked() {
     tmpstr.append("\r\n");
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_PA_WOrotpos_clicked() {
+void MainWindow::on_p_PA_WOrotpos_clicked()
+{
     tmpstr = 0;
     //   ui->line_wobrotpos->setInputMask("#99999");
     QString tmp = ui->line_wobrotpos->text();
@@ -19185,40 +19161,43 @@ void MainWindow::on_p_PA_WOrotpos_clicked() {
     tmpstr.append("\r\n");
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_check_preavac_clicked(bool checked) {
+void MainWindow::on_check_preavac_clicked(bool checked)
+{
     resCLEANflags();
-    if (checked == 0)
-        serialSendFeeder(vacoffPA);
-    else
-        serialSendFeeder(vaconPA); // aligner
+    if (checked == 0) serialSendFeeder(vacoffPA);
+    else serialSendFeeder(vaconPA); // aligner
 }
-void MainWindow::on_check_wob_deactiv_toggled(bool checked) {
-    if (checked == 1) {
-        ui->label_preawobbpresent->setStyleSheet("background-color: green");
+void MainWindow::on_check_wob_deactiv_toggled(bool checked)
+{
+    if (checked == 1)
+    {
+        // ui->label_preawobbpresent->setStyleSheet("background-color: green");
         ui->label_wobpresent->setText("Wobble present");
-
-    } else if (checked == 0) {
-        ui->label_preawobbpresent->setStyleSheet("background-color: Red");
+    }
+    else if (checked == 0)
+    {
+        // ui->label_preawobbpresent->setStyleSheet("background-color: Red");
         ui->label_wobpresent->setText("Wobble not present");
     }
 }
-void MainWindow::on_check_woturn_clicked(bool checked) {
-    if (checked)
-        serialSendFeeder("&X0,0,4,1,0,0,0,2,1,0,1,56,128,\r\n"); // Slow
-    else
-        serialSendFeeder("&X0,0,4,1,0,0,0,2,1,0,0,0,0,\r\n"); // Stop
+void MainWindow::on_check_woturn_clicked(bool checked)
+{
+    if (checked) serialSendFeeder("&X0,0,4,1,0,0,0,2,1,0,1,56,128,\r\n"); // Slow
+    else serialSendFeeder("&X0,0,4,1,0,0,0,2,1,0,0,0,0,\r\n"); // Stop
 }
-void MainWindow::on_check_preaturn_clicked(bool checked) {
-    if (checked)
-        serialSendFeeder("&X0,0,4,1,0,0,0,2,2,0,1,39,128,\r\n"); // Slow
-    else
-        serialSendFeeder("&X0,0,4,1,0,0,0,2,2,0,0,0,0,\r\n"); // Stop
+void MainWindow::on_check_preaturn_clicked(bool checked)
+{
+    if (checked) serialSendFeeder("&X0,0,4,1,0,0,0,2,2,0,1,39,128,\r\n"); // Slow
+    else serialSendFeeder("&X0,0,4,1,0,0,0,2,2,0,0,0,0,\r\n"); // Stop
 }
 void MainWindow::on_p_PA_store_clicked() // ok
 {
     STORE_FILE_partPREAS();
 }
-void MainWindow::on_push_PA_upload_clicked() { serialSendFeeder(EE_Aligner); }
+void MainWindow::on_push_PA_upload_clicked()
+{
+    serialSendFeeder(EE_Aligner);
+}
 void MainWindow::on_check_PA_moveconst_stateChanged()
 {
   //  f_setSlidecolor();
@@ -19487,22 +19466,26 @@ void MainWindow::on_check_PA_moveconst_stateChanged()
 //         }
 //     }
 // }
-void MainWindow::on_p_PA_getheight_clicked() {
+void MainWindow::on_p_PA_getheight_clicked()
+{
     waitACTpos = getPrea;
     serialSendFeeder("$X_2,0,0,3,1,0,0,0,3,3,\r\n"); // READ_POS PA Height
     ui->p_PA_getheight->setStyleSheet(backLightYello);
 }
-void MainWindow::on_p_PA_getPhi_clicked() {
+void MainWindow::on_p_PA_getPhi_clicked()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,3,2,\r\n"); // READ_POS PA Phi
     ui->p_PA_getPhi->setStyleSheet(backLightYello);
     waitACTpos = getPreaPhi;
 }
-void MainWindow::on_p_PA_getTilt_clicked() {
+void MainWindow::on_p_PA_getTilt_clicked()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,3,3,\r\n"); // READ_POS WO Tilt
     ui->p_PA_getTilt->setStyleSheet(backLightYello);
     waitACTpos = getTilt;
 }
-void MainWindow::on_p_PA_getRot_clicked() {
+void MainWindow::on_p_PA_getRot_clicked()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,3,1,\r\n"); // READ_POS WO Rotpos
     ui->p_PA_getRot->setStyleSheet(backLightYello);
     ui->p_PA_getRot_2->setStyleSheet(backLightYello);
@@ -19510,39 +19493,41 @@ void MainWindow::on_p_PA_getRot_clicked() {
 }
 void MainWindow::on_p_align_constpos_height_up_pressed() // Node3 Motor3 PA height
 {
-    serialSendFeeder(
-                "$X_2,0,0,3,1,0,0,0,2,3,255,255,216,240\r\n"); // PA height slow up -10000
+    serialSendFeeder("$X_2,0,0,3,1,0,0,0,2,3,255,255,216,240\r\n"); // PA height slow up -10000
     ui->p_align_constpos_height_up->setStyleSheet(backLightGreen);
 }
 void MainWindow::on_p_align_constpos_height_dwn_pressed() // Node3 Motor3 PA height
 {
-    serialSendFeeder(
-                "$X_2,0,0,3,1,0,0,0,2,3,0,0,39,16\r\n"); // PA height slow down 10000
+    serialSendFeeder("$X_2,0,0,3,1,0,0,0,2,3,0,0,39,16\r\n"); // PA height slow down 10000
     ui->p_align_constpos_height_dwn->setStyleSheet(backLightGreen);
 }
-void MainWindow::on_p_align_constpos_height_up_released() {
+void MainWindow::on_p_align_constpos_height_up_released()
+{
     serialSendFeeder("$X_2,0,0,3,1,0,0,0,2,3,0,0,0,0\r\n"); // Stop PA height
     ui->p_align_constpos_height_up->setStyleSheet(backDefault);
 }
-void MainWindow::on_p_align_constpos_height_dwn_released() {
+void MainWindow::on_p_align_constpos_height_dwn_released()
+{
     serialSendFeeder("$X_2,0,0,3,1,0,0,0,2,3,0,0,0,0\r\n"); // PA height stop
     ui->p_align_constpos_height_dwn->setStyleSheet(backDefault);
 }
 void MainWindow::on_p_align_constpos_phi_cw_pressed() // Node 4, Motor 2
 {
-    serialSendFeeder(
-                "$X_2,0,0,4,1,0,0,0,2,2,255,255,216,240\r\n"); // PA phi cw -10000
+    serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,2,255,255,216,240\r\n"); // PA phi cw -10000
     ui->p_align_constpos_phi_cw->setStyleSheet(backLightGreen);
 }
-void MainWindow::on_p_align_constpos_phi_cw_released() {
+void MainWindow::on_p_align_constpos_phi_cw_released()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,2,0,0,0,0\r\n"); // PA phi stop
     ui->p_align_constpos_phi_cw->setStyleSheet(backDefault);
 }
-void MainWindow::on_p_align_constpos_phi_ccw_pressed() {
+void MainWindow::on_p_align_constpos_phi_ccw_pressed()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,2,0,0,39,16\r\n"); // PA phi ccw 10000
     ui->p_align_constpos_phi_ccw->setStyleSheet(backLightGreen);
 }
-void MainWindow::on_p_align_constpos_phi_ccw_released() {
+void MainWindow::on_p_align_constpos_phi_ccw_released()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,2,0,0,0,0\r\n"); // PA phi stop
     ui->p_align_constpos_phi_ccw->setStyleSheet(backDefault);
 }
@@ -19551,39 +19536,43 @@ void MainWindow::on_p_align_constpos_tilt_up_pressed() // Node 4, Motor 3
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,3,0,0,39,16\r\n"); // PA tilt up 10000
     ui->p_align_constpos_tilt_up->setStyleSheet(backLightGreen);
 }
-void MainWindow::on_p_align_constpos_tilt_up_released() {
+void MainWindow::on_p_align_constpos_tilt_up_released()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,3,0,0,0,0\r\n"); // PA tilt stop
     ui->p_align_constpos_tilt_up->setStyleSheet(backDefault);
 }
-void MainWindow::on_p_align_constpos_tilt_dwn_pressed() {
-    serialSendFeeder(
-                "$X_2,0,0,4,1,0,0,0,2,3,255,255,216,240\r\n"); // PA tilt down -10000
+void MainWindow::on_p_align_constpos_tilt_dwn_pressed()
+{
+    serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,3,255,255,216,240\r\n"); // PA tilt down -10000
     ui->p_align_constpos_tilt_dwn->setStyleSheet(backLightGreen);
 }
-void MainWindow::on_p_align_constpos_tilt_dwn_released() {
+void MainWindow::on_p_align_constpos_tilt_dwn_released()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,3,0,0,0,0\r\n"); // Stop PA tilt
     ui->p_align_constpos_tilt_dwn->setStyleSheet(backDefault);
 }
 void MainWindow::on_p_align_constpos_rot_cw_pressed() // Node 4, Motor 1
 {
-    serialSendFeeder(
-                "$X_2,0,0,4,1,0,0,0,2,1,0,0,39,16\r\n"); // PA rotpos cw 10000
+    serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,1,0,0,39,16\r\n"); // PA rotpos cw 10000
     ui->p_align_constpos_rot_cw->setStyleSheet(backLightGreen);
 }
-void MainWindow::on_p_align_constpos_rot_cw_released() {
+void MainWindow::on_p_align_constpos_rot_cw_released()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,1,0,0,0,0\r\n"); // PA rotpos stop
     ui->p_align_constpos_rot_cw->setStyleSheet(backDefault);
 }
-void MainWindow::on_p_align_constpos_rot_ccw_pressed() {
-    serialSendFeeder(
-                "$X_2,0,0,4,1,0,0,0,2,1,255,255,216,240\r\n"); // PA rotpos ccw -10000
+void MainWindow::on_p_align_constpos_rot_ccw_pressed()
+{
+    serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,1,255,255,216,240\r\n"); // PA rotpos ccw -10000
     ui->p_align_constpos_rot_ccw->setStyleSheet(backLightGreen);
 }
-void MainWindow::on_p_align_constpos_rot_ccw_released() {
+void MainWindow::on_p_align_constpos_rot_ccw_released()
+{
     serialSendFeeder("$X_2,0,0,4,1,0,0,0,2,1,0,0,0,0\r\n"); // PA rotpos stop
     ui->p_align_constpos_rot_ccw->setStyleSheet(backDefault);
 }
-void MainWindow::on_p_align_getws_clicked() {
+void MainWindow::on_p_align_getws_clicked()
+{
     tmpstr = 0;
     tmpstr.append(READ);
     tmpstr.append("56"); // Wafer Sensor
@@ -19593,13 +19582,13 @@ void MainWindow::on_p_align_getws_clicked() {
     serialSendFeeder(tmpstr);
 }
 //------------------- Register WAFERCHANGER --------------
-void MainWindow::on_radio_wc_stepsmm_clicked(bool checked) {
-    if (checked)
-        WC_conv2mm();
-    else
-        WC_conv2steps();
+void MainWindow::on_radio_wc_stepsmm_clicked(bool checked)
+{
+    if (checked) WC_conv2mm();
+    else WC_conv2steps();
 }
-void MainWindow::WC_conv2mm() {
+void MainWindow::WC_conv2mm()
+{
     float height = 0.000000;
     float tmpReso = 0.000000;
 
@@ -19643,7 +19632,8 @@ void MainWindow::WC_conv2mm() {
     height = ui->line_wc_rightpos_2->text().toFloat(&ok);
     ui->line_wc_rightpos_2->setText(QString::number((height / tmpReso), 'f', 3));
 }
-void MainWindow::WC_conv2steps() {
+void MainWindow::WC_conv2steps()
+{
     float height = 0.000000;
     float tmpReso = 0.000000;
     int val;
@@ -19704,7 +19694,8 @@ void MainWindow::WC_conv2steps() {
     val = qRound(height * tmpReso);
     ui->line_wc_rightpos_2->setText(QString::number((val)));
 }
-void MainWindow::on_check_wc_deactivate_stateChanged(int arg1) {
+void MainWindow::on_check_wc_deactivate_stateChanged(int arg1)
+{
     if (arg1 == 2) {
         ui->label_wcpresent->setStyleSheet("background-color: green");
         ui->label_wcpresentlabel->setText("Wafer changer present");
@@ -19713,19 +19704,26 @@ void MainWindow::on_check_wc_deactivate_stateChanged(int arg1) {
         ui->label_wcpresentlabel->setText("Wafer changer not present");
     }
 }
-void MainWindow::on_p_wc_engine_clicked() { changeWidget("MOTOR"); }
-void MainWindow::on_p_wc_initheight_clicked() {
+void MainWindow::on_p_wc_engine_clicked()
+{ changeWidget("MOTOR"); }
+void MainWindow::on_p_wc_initheight_clicked()
+{
     feedertimeout = 10000;
     serialSendFeeder(RES_WCH);
 }
-void MainWindow::on_p_wc_initangle_clicked() {
+void MainWindow::on_p_wc_initangle_clicked()
+{
     feedertimeout = 6000;
     serialSendFeeder(RES_WCP);
 }
-void MainWindow::on_push_WC_upload_clicked() { serialSendFeeder(EE_WC); }
-void MainWindow::on_p_WC_abovCHhgt_clicked() { wc_pos_abovechuckhgt(); }
-void MainWindow::on_p_WC_CHhgt_clicked() { wc_pos_chuckhgt(); }
-void MainWindow::on_p_WC_belowCHhgt_clicked() {
+void MainWindow::on_push_WC_upload_clicked()
+{ serialSendFeeder(EE_WC); }
+void MainWindow::on_p_WC_abovCHhgt_clicked()
+{ wc_pos_abovechuckhgt(); }
+void MainWindow::on_p_WC_CHhgt_clicked()
+{ wc_pos_chuckhgt(); }
+void MainWindow::on_p_WC_belowCHhgt_clicked()
+{
     tmpstr = 0;
     ui->line_wc_belowchuckheight->setInputMask("#99999");
     QString tmp = ui->line_wc_belowchuckheight->text();
@@ -19735,7 +19733,8 @@ void MainWindow::on_p_WC_belowCHhgt_clicked() {
     tmpstr.append("\r\n");
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_WC_left_clicked() {
+void MainWindow::on_p_WC_left_clicked()
+{
     tmpstr = 0;
     ui->line_wc_leftpos->setInputMask("#9999999");
     QString tmp = ui->line_wc_leftpos->text();
@@ -19746,11 +19745,14 @@ void MainWindow::on_p_WC_left_clicked() {
     feedertimeout = 8000;
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_WC_middle_clicked() { wc_pos_middle(); }
-void MainWindow::on_p_sys_posWCmiddle_2_clicked() {
+void MainWindow::on_p_WC_middle_clicked()
+{ wc_pos_middle(); }
+void MainWindow::on_p_sys_posWCmiddle_2_clicked()
+{
     serialSendFeeder("$SET_60=0\r\n"); // setzt auch API-Flag WCok
 }
-void MainWindow::on_p_WC_right_clicked() {
+void MainWindow::on_p_WC_right_clicked()
+{
     tmpstr = 0;
     ui->line_wc_rightpos->setInputMask("#9999999");
     QString tmp = ui->line_wc_rightpos->text();
@@ -19761,35 +19763,32 @@ void MainWindow::on_p_WC_right_clicked() {
     feedertimeout = 5000;
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_check_wc_vacuumchuck_clicked(bool checked) {
+void MainWindow::on_check_wc_vacuumchuck_clicked(bool checked)
+{
     resCLEANflags();
-    if (checked == 0)
-        serialSendFeeder(vacoffCH4);
-    else
-        serialSendFeeder(vaconCH4); // chuck 4
+    if (checked == 0) serialSendFeeder(vacoffCH4);
+    else serialSendFeeder(vaconCH4); // chuck 4
 }
-void MainWindow::on_check_wc_vacuumright_clicked(bool checked) {
+void MainWindow::on_check_wc_vacuumright_clicked(bool checked)
+{
     resCLEANflags();
-    if (checked == 0)
-        serialSendFeeder(vacoffWC2);
-    else
-        serialSendFeeder(vaconWC2); // wc2
+    if (checked == 0) serialSendFeeder(vacoffWC2);
+    else serialSendFeeder(vaconWC2); // wc2
 }
-void MainWindow::on_check_wc_vacuumleft_clicked(bool checked) {
+void MainWindow::on_check_wc_vacuumleft_clicked(bool checked)
+{
     resCLEANflags();
-    if (checked == 0)
-        serialSendFeeder(vacoffWC1);
-    else
-        serialSendFeeder(vaconWC1); // wc1
+    if (checked == 0) serialSendFeeder(vacoffWC1);
+    else serialSendFeeder(vaconWC1); // wc1
 }
-void MainWindow::on_check_preavac_2_clicked(bool checked) {
+void MainWindow::on_check_preavac_2_clicked(bool checked)
+{
     resCLEANflags();
-    if (checked == 0)
-        serialSendFeeder(vacoffPA);
-    else
-        serialSendFeeder(vaconPA); // aligner
+    if (checked == 0) serialSendFeeder(vacoffPA);
+    else serialSendFeeder(vaconPA); // aligner
 }
-void MainWindow::wc_pos_chuckhgt() {
+void MainWindow::wc_pos_chuckhgt()
+{
     tmpstr = 0;
     ui->line_wc_chuckheight->setInputMask("#99999");
     QString tmp = ui->line_wc_chuckheight->text();
@@ -19799,7 +19798,8 @@ void MainWindow::wc_pos_chuckhgt() {
     tmpstr.append("\r\n");
     serialSendFeeder(tmpstr);
 }
-void MainWindow::wc_pos_abovechuckhgt() {
+void MainWindow::wc_pos_abovechuckhgt()
+{
     tmpstr = 0;
     ui->line_wc_abovechuckheight->setInputMask("#99999");
     QString tmp = ui->line_wc_abovechuckheight->text();
@@ -19809,7 +19809,8 @@ void MainWindow::wc_pos_abovechuckhgt() {
     tmpstr.append("\r\n");
     serialSendFeeder(tmpstr);
 }
-void MainWindow::wc_pos_middle() {
+void MainWindow::wc_pos_middle()
+{
     tmpstr = 0;
     ui->line_wc_middlepos->setInputMask("#9999999");
     QString tmp = ui->line_wc_middlepos->text();
@@ -19821,7 +19822,8 @@ void MainWindow::wc_pos_middle() {
     feedertimeout = 8000;
     serialSendFeeder(tmpstr);
 }
-void MainWindow::wc_pos_left() {
+void MainWindow::wc_pos_left()
+{
     tmpstr = 0;
     ui->line_wc_leftpos->setInputMask("#9999999");
     QString tmp = ui->line_wc_leftpos->text();
@@ -19838,7 +19840,8 @@ void MainWindow::on_check_WC_moveconst_stateChanged() // checkbox motor move
 }
 void MainWindow::on_p_WC_getheight_clicked()
 {
-    if (cmdfeeder == 0) {
+    if (cmdfeeder == 0)
+    {
         waitACTpos = getWC;
         serialSendFeeder("$X_2,0,0,5,1,0,0,0,3,3,\r\n"); // READ_POS WC Height
         ui->p_WC_getheight->setStyleSheet(backLightYello);
@@ -19925,36 +19928,29 @@ void MainWindow::LD_conv2mm()
     // Loader y - motor
     tmpReso = getResolution("Loader y - motor").toFloat();
     height = ui->line_loader_ylift1inpos->text().toFloat(&ok);
-    ui->line_loader_ylift1inpos->setText(
-                QString::number((height / tmpReso), 'f', 3));
+    ui->line_loader_ylift1inpos->setText(QString::number((height / tmpReso), 'f', 3));
     height = ui->line_loader_ylift2inpos->text().toFloat(&ok);
-    ui->line_loader_ylift2inpos->setText(
-                QString::number((height / tmpReso), 'f', 3));
+    ui->line_loader_ylift2inpos->setText(QString::number((height / tmpReso), 'f', 3));
     //    height = ui->line_loader_yliftdispl->text().toFloat(&ok);
     //    ui->line_loader_yliftdispl->setText(QString::number((height/tmpReso),'f',3));
     height = ui->line_loader_youtlift->text().toFloat(&ok);
-    ui->line_loader_youtlift->setText(
-                QString::number((height / tmpReso), 'f', 3));
+    ui->line_loader_youtlift->setText(QString::number((height / tmpReso), 'f', 3));
     height = ui->line_loader_ypreapos->text().toFloat(&ok);
-    ui->line_loader_ypreapos->setText(
-                QString::number((height / tmpReso), 'f', 3));
+    ui->line_loader_ypreapos->setText(QString::number((height / tmpReso), 'f', 3));
 
     height = ui->line_loader_ylift1inpos_2->text().toFloat(&ok);
-    ui->line_loader_ylift1inpos_2->setText(
-                QString::number((height / tmpReso), 'f', 3));
+    ui->line_loader_ylift1inpos_2->setText(QString::number((height / tmpReso), 'f', 3));
     height = ui->line_loader_ylift2inpos_2->text().toFloat(&ok);
-    ui->line_loader_ylift2inpos_2->setText(
-                QString::number((height / tmpReso), 'f', 3));
+    ui->line_loader_ylift2inpos_2->setText(QString::number((height / tmpReso), 'f', 3));
     // height = ui->line_loader_yliftdispl_3->text().toFloat(&ok);
     // ui->line_loader_yliftdispl_3->setText(QString::number((height/tmpReso),'f',3));
     height = ui->line_loader_youtlift_2->text().toFloat(&ok);
-    ui->line_loader_youtlift_2->setText(
-                QString::number((height / tmpReso), 'f', 3));
+    ui->line_loader_youtlift_2->setText(QString::number((height / tmpReso), 'f', 3));
     height = ui->line_loader_ypreapos_2->text().toFloat(&ok);
-    ui->line_loader_ypreapos_2->setText(
-                QString::number((height / tmpReso), 'f', 3));
+    ui->line_loader_ypreapos_2->setText(QString::number((height / tmpReso), 'f', 3));
 }
-void MainWindow::LD_conv2steps() {
+void MainWindow::LD_conv2steps()
+{
     float height = 0.000000;
     float tmpReso = 0.000000;
     int val;
@@ -20020,16 +20016,20 @@ void MainWindow::LD_conv2steps() {
     val = qRound(height * tmpReso);
     ui->line_loader_ypreapos_2->setText(QString::number((val)));
 }
-void MainWindow::on_p_loader_engine_clicked() { changeWidget("MOTOR"); }
-void MainWindow::on_p_loader_initydrive_clicked() {
+void MainWindow::on_p_loader_engine_clicked()
+{ changeWidget("MOTOR"); }
+void MainWindow::on_p_loader_initydrive_clicked()
+{
     feedertimeout = 20000;
     serialSendFeeder(RES_LDY); // LDY = INIT_0
 }
-void MainWindow::on_p_loader_initxdrive_clicked() {
+void MainWindow::on_p_loader_initxdrive_clicked()
+{
     feedertimeout = 40000;
     serialSendFeeder(RES_LDX); // LDX = INIT_1
 }
-void MainWindow::on_push_loader_upload_clicked() {
+void MainWindow::on_push_loader_upload_clicked()
+{
     serialSendFeeder(EE_Loader);
 }
 void MainWindow::on_check_loader_releasemotoX_clicked(bool checked)
@@ -20037,27 +20037,25 @@ void MainWindow::on_check_loader_releasemotoX_clicked(bool checked)
     if (checked) serialSendFeeder(releaseLDX);
     else serialSendFeeder(motparaLDX);
 }
-void MainWindow::on_check_loader_releasemotoY_clicked(bool checked) {
-    if (checked)
-        serialSendFeeder(releaseLDY);
-    else
-        serialSendFeeder(motparaLDY);
+void MainWindow::on_check_loader_releasemotoY_clicked(bool checked)
+{
+    if (checked) serialSendFeeder(releaseLDY);
+    else serialSendFeeder(motparaLDY);
 }
-void MainWindow::on_check_loader_vacuum_clicked(bool checked) {
+void MainWindow::on_check_loader_vacuum_clicked(bool checked)
+{
     resCLEANflags();
-    if (checked == 0)
-        serialSendFeeder(vacoffLD); // loader
-    else
-        serialSendFeeder(vaconLD);
+    if (checked == 0) serialSendFeeder(vacoffLD); // loader
+    else serialSendFeeder(vaconLD);
 }
-void MainWindow::on_check_preavac_3_clicked(bool checked) {
+void MainWindow::on_check_preavac_3_clicked(bool checked)
+{
     resCLEANflags();
-    if (checked == 0)
-        serialSendFeeder(vacoffPA);
-    else
-        serialSendFeeder(vaconPA); // aligner
+    if (checked == 0) serialSendFeeder(vacoffPA);
+    else serialSendFeeder(vaconPA); // aligner
 }
-void MainWindow::on_p_LD_Xlift1_clicked() {
+void MainWindow::on_p_LD_Xlift1_clicked()
+{
     tmpstr = 0;
     ui->line_loader_xlift1pos->setInputMask("#99999");
     QString tmp = ui->line_loader_xlift1pos->text();
@@ -20068,7 +20066,8 @@ void MainWindow::on_p_LD_Xlift1_clicked() {
     feedertimeout = 40000;
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_LD_Xlift2_clicked() {
+void MainWindow::on_p_LD_Xlift2_clicked()
+{
     tmpstr = 0;
     ui->line_loader_xlift2pos->setInputMask("#99999");
     QString tmp = ui->line_loader_xlift2pos->text();
@@ -20079,7 +20078,8 @@ void MainWindow::on_p_LD_Xlift2_clicked() {
     feedertimeout = 40000;
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_LD_XPA_clicked() {
+void MainWindow::on_p_LD_XPA_clicked()
+{
     tmpstr = 0;
     ui->line_loader_xpreapos->setInputMask("#99999");
     QString tmp = ui->line_loader_xpreapos->text();
@@ -20090,7 +20090,8 @@ void MainWindow::on_p_LD_XPA_clicked() {
     feedertimeout = 40000;
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_LD_PAfree_clicked() {
+void MainWindow::on_p_LD_PAfree_clicked()
+{
     tmpstr = 0;
     ui->line_loader_xpreafreepos->setInputMask("#99999");
     QString tmp = ui->line_loader_xpreafreepos->text();
@@ -20112,7 +20113,8 @@ void MainWindow::on_p_LD_Yinlift1_clicked() {
     feedertimeout = 35000;
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_LD_Yinlift2_clicked() {
+void MainWindow::on_p_LD_Yinlift2_clicked()
+{
     tmpstr = 0;
     ui->line_loader_ylift2inpos->setInputMask("#99999");
     QString tmp = ui->line_loader_ylift2inpos->text();
@@ -20135,7 +20137,8 @@ void MainWindow::on_p_LD_Yout_clicked()
     feedertimeout = 35000;
     serialSendFeeder(tmpstr);
 }
-void MainWindow::on_p_LD_Ypapos_clicked() {
+void MainWindow::on_p_LD_Ypapos_clicked()
+{
     tmpstr = 0;
     ui->line_loader_ypreapos->setInputMask("#99999");
     QString tmp = ui->line_loader_ypreapos->text();
@@ -27782,6 +27785,8 @@ void MainWindow::removetab()
     ui->frame_FIFO->hide();
     ui->frame_movemotor_wc->hide();
     ui->groupBox_SMIF_service->hide();
+    ui->groupBox_joy->hide();
+    ui->groupBox_COMPORTS->hide();
     ui->label_vac_valvetest->hide();
     ui->toolBox_macro->hide();
     ui->p_INIT_resetcmdfeeder->hide();

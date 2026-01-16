@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>imgages/darkAvailable.ico</file>
+        <file>imgages/darkBusy.ico</file>
+        <file>imgages/icons8-anmelden-abgerundet-rechts-50.png</file>
+        <file>imgages/icons8-anmelden-abgerundet-rechts-100.png</file>
+        <file>imgages/icons8-benutzeranmeldeinformationen-50.png</file>
+        <file>imgages/icons8-benutzeranmeldeinformationen-50-2.png</file>
+        <file>imgages/icons8-benutzeranmeldeinformationen-100.png</file>
+        <file>imgages/icons8-benutzeranmeldeinformationen-100-2.png</file>
+        <file>imgages/icons8-eintreten-50.png</file>
+        <file>imgages/icons8-eintreten-100.png</file>
+        <file>imgages/maintenance Icon-Noun Project.png</file>
+        <file>imgages/statusDone.ico</file>
+        <file>imgages/statusNotDone.ico</file>
+    </qresource>
+    <qresource prefix="/css">
+        <file>css/stylesheet.css</file>
+    </qresource>
+</RCC>

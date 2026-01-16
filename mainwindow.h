@@ -302,9 +302,9 @@ class MainWindow : public QMainWindow
             void on_p_PA_CHhgt_clicked();
             void on_p_PA_hgt_clicked();
             void on_p_PA_SnesAngle_clicked();
-            void on_p_PA_count_clicked();
-            void on_p_PA_precount_clicked();
-            void on_p_PA_postcount_clicked();
+            // void on_p_PA_count_clicked();
+            // void on_p_PA_precount_clicked();
+            // void on_p_PA_postcount_clicked();
             void on_p_PA_WOtilt_clicked();
             void on_p_PA_WOrotpos_clicked();
             void on_p_PA_getTilt_clicked();
