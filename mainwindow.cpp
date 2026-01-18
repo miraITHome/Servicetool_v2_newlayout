@@ -211,12 +211,12 @@ MainWindow::MainWindow(QWidget *parent)
     // ui->label_rotspeed_2->hide();
     ui->line_wobphispeed->hide();
     ui->line_wobphispeed_2->hide();
-    ui->push_wid_cass_Calib->hide();
+    // ui->push_wid_cass_Calib->hide();
     ui->checkBox_mainvacoff->hide();
     ui->groupBox_COMPORTS->hide();
     ui->frame_inifiles->hide();
-    ui->push_mot_readrac->hide();
-    ui->push_mot_readrac_2->hide();
+    // ui->push_mot_readrac->hide();
+    // ui->push_mot_readrac_2->hide();
     ui->check_param1->hide();
     ui->check_param1->setChecked(false);
     ui->check_param2->hide();
@@ -234,8 +234,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->frame_clean_wc->setDisabled(1);
     ui->frame_clean_prea->setDisabled(1);
     ui->frame_clean_setpos->setDisabled(1);
-    ui->frame_lift1_defaultcass->hide();
-    ui->frame_lift2_defaultcass->hide();
+    // ui->frame_lift1_defaultcass->hide();
+    // ui->frame_lift2_defaultcass->hide();
     ui->frame_stationlist->hide();
     ui->frame_API_assistant->hide();
     ui->frame_SMIF_ISIM->hide();
@@ -255,7 +255,7 @@ MainWindow::MainWindow(QWidget *parent)
     //ui->radio_prea_stepsmm->hide();
    // ui->radio_loader_stepsmm->hide();
     //ui->radio_wc_stepsmm->hide();
-    ui->frame_motset->setStyleSheet(col_Saharasand);
+    // ui->frame_motset->setStyleSheet(col_Saharasand);
     ui->frame_lift1type->setStyleSheet(col_Saharasand);
     ui->frame_lift2type->setStyleSheet(col_Saharasand);
     // ui->frame_IN->setStyleSheet("QFrame {border-color: col_Pistazie}");
@@ -1618,7 +1618,8 @@ void MainWindow::f_receiveX2(QByteArray str) // Erkennungszeichen # ->str enthä
                 ui->linePA_actpos_degree_rot->setText(s);
                 ui->p_PA_getRot->setStyleSheet(backLightGreen);
                 ui->p_PA_getRot_2->setStyleSheet(backLightGreen);
-            } else if (waitACTpos == readmotstat) {
+            } else if (waitACTpos == readmotstat)
+            {
                 ui->line_mot_pos->setText(abspos);
                 ui->line_mot_speed->setText(actspeed);
                 if (limitsw.toInt(&ok, 10) & 0b00001000)
@@ -1659,66 +1660,56 @@ void MainWindow::f_receiveX2(QByteArray str) // Erkennungszeichen # ->str enthä
                     ui->p_motstat_WCH->setStyleSheet(backLightGreen);
                 else if (ui->p_motstat_WCP->styleSheet() == backLightYello)
                     ui->p_motstat_WCP->setStyleSheet(backLightGreen);
-            } else if (waitACTpos == getVacParamLD) {
+            }
+            else if (waitACTpos == getVacParamLD)
+            {
                 ui->line_vac_LD_puls->setText(QString::number(Byte[1].toInt(&ok, 16)));
-                ui->line_vac_LD_timeout->setText(
-                            QString::number(Byte[2].toInt(&ok, 16)));
-                if (ui->check_vac_lowactive->isChecked()) {
+                ui->line_vac_LD_timeout->setText(QString::number(Byte[2].toInt(&ok, 16)));
+                if (ui->check_vac_lowactive->isChecked())
+                {
                     ui->line_vac_LD_ThrsON_2->setPalette(palSchrift);
                     ui->line_vac_LD_ThrsON->setPalette(palSchrift0);
-                    ui->line_vac_LD_ThrsON->setText(
-                                QString::number(Byte[3].toInt(&ok, 16)));
+                    ui->line_vac_LD_ThrsON->setText(QString::number(Byte[3].toInt(&ok, 16)));
                     ui->line_vac_WC1_ThrsON_2->setPalette(palSchrift);
                     ui->line_vac_WC1_ThrsON->setPalette(palSchrift0);
-                    ui->line_vac_WC1_ThrsON->setText(
-                                QString::number(Byte[7].toInt(&ok, 16)));
+                    ui->line_vac_WC1_ThrsON->setText(QString::number(Byte[7].toInt(&ok, 16)));
                     ui->line_vac_WC2_ThrsON_2->setPalette(palSchrift);
                     ui->line_vac_WC2_ThrsON->setPalette(palSchrift0);
-                    ui->line_vac_WC2_ThrsON->setText(
-                                QString::number(Byte[11].toInt(&ok, 16)));
+                    ui->line_vac_WC2_ThrsON->setText(QString::number(Byte[11].toInt(&ok, 16)));
                     ui->line_vac_PA_ThrsON_2->setPalette(palSchrift);
                     ui->line_vac_PA_ThrsON->setPalette(palSchrift0);
-                    ui->line_vac_PA_ThrsON->setText(
-                                QString::number(Byte[15].toInt(&ok, 16)));
-                } else {
+                    ui->line_vac_PA_ThrsON->setText(QString::number(Byte[15].toInt(&ok, 16)));
+                }
+                else
+                {
                     ui->line_vac_LD_ThrsON->setPalette(palSchrift);
                     ui->line_vac_LD_ThrsON_2->setPalette(palSchrift0);
-                    ui->line_vac_LD_ThrsON->setText(
-                                QString::number(Byte[3].toInt(&ok, 16)));
+                    ui->line_vac_LD_ThrsON->setText(QString::number(Byte[3].toInt(&ok, 16)));
                     ui->line_vac_WC1_ThrsON->setPalette(palSchrift);
                     ui->line_vac_WC1_ThrsON_2->setPalette(palSchrift0);
-                    ui->line_vac_WC1_ThrsON->setText(
-                                QString::number(Byte[7].toInt(&ok, 16)));
+                    ui->line_vac_WC1_ThrsON->setText(QString::number(Byte[7].toInt(&ok, 16)));
                     ui->line_vac_WC2_ThrsON->setPalette(palSchrift);
                     ui->line_vac_WC2_ThrsON_2->setPalette(palSchrift0);
-                    ui->line_vac_WC2_ThrsON->setText(
-                                QString::number(Byte[11].toInt(&ok, 16)));
+                    ui->line_vac_WC2_ThrsON->setText(QString::number(Byte[11].toInt(&ok, 16)));
                     ui->line_vac_PA_ThrsON->setPalette(palSchrift);
                     ui->line_vac_PA_ThrsON_2->setPalette(palSchrift0);
-                    ui->line_vac_PA_ThrsON->setText(
-                                QString::number(Byte[15].toInt(&ok, 16)));
+                    ui->line_vac_PA_ThrsON->setText(QString::number(Byte[15].toInt(&ok, 16)));
                 }
-                ui->line_vac_LD_ThrsOFF->setText(
-                            QString::number(Byte[4].toInt(&ok, 16)));
+                ui->line_vac_LD_ThrsOFF->setText(QString::number(Byte[4].toInt(&ok, 16)));
                 ui->line_vac_WC1_puls->setText(QString::number(Byte[5].toInt(&ok, 16)));
-                ui->line_vac_WC1_Timeout->setText(
-                            QString::number(Byte[6].toInt(&ok, 16)));
+                ui->line_vac_WC1_Timeout->setText(QString::number(Byte[6].toInt(&ok, 16)));
                 // ui->line_vac_WC1_ThrsON->setText(QString::number(Byte[7].toInt(&ok,16)));
-                ui->line_vac_WC1_ThrsOFF->setText(
-                            QString::number(Byte[8].toInt(&ok, 16)));
+                ui->line_vac_WC1_ThrsOFF->setText(QString::number(Byte[8].toInt(&ok, 16)));
                 ui->line_vac_WC2_puls->setText(QString::number(Byte[9].toInt(&ok, 16)));
-                ui->line_vac_WC2_Timeout->setText(
-                            QString::number(Byte[10].toInt(&ok, 16)));
+                ui->line_vac_WC2_Timeout->setText(QString::number(Byte[10].toInt(&ok, 16)));
                 // ui->line_vac_WC2_ThrsON->setText(QString::number(Byte[11].toInt(&ok,16)));
-                ui->line_vac_WC2_ThrsOFF->setText(
-                            QString::number(Byte[12].toInt(&ok, 16)));
+                ui->line_vac_WC2_ThrsOFF->setText(QString::number(Byte[12].toInt(&ok, 16)));
                 ui->line_vac_PA_puls->setText(QString::number(Byte[13].toInt(&ok, 16)));
-                ui->line_vac_PA_Timeout->setText(
-                            QString::number(Byte[14].toInt(&ok, 16)));
+                ui->line_vac_PA_Timeout->setText(QString::number(Byte[14].toInt(&ok, 16)));
                 // ui->line_vac_PA_ThrsON->setText(QString::number(Byte[15].toInt(&ok,16)));
-                ui->line_vac_PA_ThrsOFF->setText(
-                            QString::number(Byte[16].toInt(&ok, 16)));
-            } else if (waitACTpos == getVacParamPA)
+                ui->line_vac_PA_ThrsOFF->setText(QString::number(Byte[16].toInt(&ok, 16)));
+            }
+            else if (waitACTpos == getVacParamPA)
             {
                 ui->line_vac_CH4_puls->setText(QString::number(Byte[1].toInt(&ok, 16)));
                 ui->line_vac_CH4_Timeout->setText(QString::number(Byte[2].toInt(&ok, 16)));
@@ -1748,7 +1739,9 @@ void MainWindow::f_receiveX2(QByteArray str) // Erkennungszeichen # ->str enthä
                 ui->line_vac_MainVac_ThrsON->setText(QString::number(Byte[19].toInt(&ok, 16)));
                 ui->line_vac_MainVac_ThrsOFF->setText(QString::number(Byte[20].toInt(&ok, 16)));
                 waitlog = 0;
-            } else if (waitACTpos == getLock1Param) {
+            }
+            else if (waitACTpos == getLock1Param)
+            {
                 //    Byte 1      Delaytime
                 //    Byte 2      Lockvoltage 1
                 //    Byte 3      Lockvoltage 2
@@ -1763,12 +1756,10 @@ void MainWindow::f_receiveX2(QByteArray str) // Erkennungszeichen # ->str enthä
                 //    Byte 12    Vacummnummer
 
                 ui->line_lock_delaytime->setPalette(palSchrift);
-                ui->line_lock_delaytime->setText(
-                            QString::number(Byte[1].toInt(&ok, 16)));
+                ui->line_lock_delaytime->setText(QString::number(Byte[1].toInt(&ok, 16)));
 
                 ui->line_lock_vacnumber->setPalette(palSchrift);
-                ui->line_lock_vacnumber->setText(
-                            QString::number(Byte[12].toInt(&ok, 16)));
+                ui->line_lock_vacnumber->setText(QString::number(Byte[12].toInt(&ok, 16)));
 
                 ui->line_lock_v1->setPalette(palSchrift);
                 ui->line_lock_v1->setText(QString::number(Byte[2].toInt(&ok, 16)));
@@ -1799,7 +1790,8 @@ void MainWindow::f_receiveX2(QByteArray str) // Erkennungszeichen # ->str enthä
 
                 ui->line_unlock_v5->setPalette(palSchrift);
                 ui->line_unlock_v5->setText(QString::number(Byte[11].toInt(&ok, 16)));
-            } else if (waitACTpos == getLock2Param) {
+            }
+            else if (waitACTpos == getLock2Param) {
                 ui->line_lock_delaytime_2->setPalette(palSchrift);
                 ui->line_lock_delaytime_2->setText(
                             QString::number(Byte[1].toInt(&ok, 16)));
@@ -2105,7 +2097,7 @@ void MainWindow::f_receiveSVC(QByteArray str)
         else if (unit == 3) // RESET Lift2 Height
         {
             ui->label_res_L2H->setStyleSheet("QLabel { background-color: green }");
-            ui->p_lift2_init_height->setStyleSheet(backLightGreen);
+            // ui->p_lift2_init_height->setStyleSheet(backLightGreen);
         }
         else if (unit == 4) // RESET WC Height
         {
@@ -2162,7 +2154,7 @@ void MainWindow::f_receiveSVC(QByteArray str)
         else if (unit == 11) // RESET Lift2 Tilt
         {
             ui->label_res_L2T->setStyleSheet("QLabel { background-color: green }");
-            ui->p_lift2_init_tilt->setStyleSheet(backLightGreen);
+            // ui->p_lift2_init_tilt->setStyleSheet(backLightGreen);
         }
         else if (unit == 30) // RESET alle response
         {
@@ -2495,17 +2487,21 @@ void MainWindow::f_receiveSVC(QByteArray str)
             float tmpResoT = getResolution("Lift2 tilt motor").toFloat();
             float tmpfloat = 0.000000;
 
-            auto parts = str.mid(str.indexOf(":") + 1,
-                                 str.indexOf("\r") - str.indexOf(":") - 1)
+            auto parts = str.mid(str.indexOf(":") + 1, str.indexOf("\r") - str.indexOf(":") - 1)
                     .split(',');
-            for (int i = 0; i < parts.count(); i++) {
-                switch (i) {
+            for (int i = 0; i < parts.count(); i++)
+            {
+                switch (i)
+                {
                 case 0:
-                    if (parts[i] == "1") {
-                        ui->label_Lift1Present->setStyleSheet("background-color: green");
+                    if (parts[i] == "1")
+                    {
+                        // ui->label_Lift1Present->setStyleSheet("background-color: green");
                         ui->check_lift1_deactivate->setChecked(1);
                         //    ui->check_lift1_deactivate->setText("deactivate");
-                    } else {
+                    }
+                    else
+                    {
                         //    ui->label_Lift1Present->setStyleSheet("background-color:
                         //    Red");
                         ui->check_lift1_deactivate->setChecked(0);
@@ -2514,61 +2510,58 @@ void MainWindow::f_receiveSVC(QByteArray str)
                     break;
                 case 1:
                     ui->line_lift1_wafersensor_height_2->setPalette(palSchrift);
-                    ui->line_lift1_wafersensor_height_mm_2->setPalette(palSchrift);
+                    // ui->line_lift1_wafersensor_height_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_lift1_wafersensor_height_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift1_wafersensor_height_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift1_wafersensor_height_2->setText(parts[i]);
                     break;
                 case 2: // Unload operator height
                     ui->line_lift1_unload_height_2->setPalette(palSchrift);
-                    ui->line_lift1_unload_height_mm_2->setPalette(palSchrift);
+                    // ui->line_lift1_unload_height_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_lift1_unload_height_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift1_unload_height_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift1_unload_height_2->setText(parts[i]);
                     break;
                 case 3: // XY-Loader height
                     ui->line_lift1_xyloader_height_2->setPalette(palSchrift);
-                    ui->line_lift1_xyloader_height_mm_2->setPalette(palSchrift);
+                    // ui->line_lift1_xyloader_height_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_lift1_xyloader_height_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift1_xyloader_height_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift1_xyloader_height_2->setText(parts[i]);
                     break;
                 case 4: // Measuring Unit Height
                     ui->line_lift1_measuring_height_2->setPalette(palSchrift);
-                    ui->line_lift1_measuring_height_mm_2->setPalette(palSchrift);
+                    // ui->line_lift1_measuring_height_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_lift1_measuring_height_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift1_measuring_height_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift1_measuring_height_2->setText(parts[i]);
                     break;
                 case 5: // Tilt present
-                    if (parts[i] == "1") {
-                        ui->label_Tilt1Present->setStyleSheet("background-color: green");
+                    if (parts[i] == "1")
+                    {
+                        // ui->label_Tilt1Present->setStyleSheet("background-color: green");
                         ui->check_tilt1_deactivate->setText("deactivate");
                         ui->check_tilt1_deactivate->setChecked(1);
-                    } else {
-                        ui->label_Tilt1Present->setStyleSheet("background-color: Red");
+                    }
+                    else
+                    {
+                        // ui->label_Tilt1Present->setStyleSheet("background-color: Red");
                         ui->check_tilt1_deactivate->setText("activate");
                         ui->check_tilt1_deactivate->setChecked(0);
                     }
                     break;
                 case 6: // Tilt on position
                     ui->line_lift1_tiltactpos_2->setPalette(palSchrift);
-                    ui->line_lift1_tiltactpos_mm_2->setPalette(palSchrift);
+                    // ui->line_lift1_tiltactpos_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoT;
-                    ui->line_lift1_tiltactpos_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift1_tiltactpos_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift1_tiltactpos_2->setText(parts[i]);
                     break;
                 case 7: // Tilt off position
                     ui->line_lift1_tiltinactpos_2->setPalette(palSchrift);
-                    ui->line_lift1_tiltinactpos_mm_2->setPalette(palSchrift);
+                    // ui->line_lift1_tiltinactpos_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoT;
-                    ui->line_lift1_tiltinactpos_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift1_tiltinactpos_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift1_tiltinactpos_2->setText(parts[i]);
                     break;
                 case 8: // Wafertype thin
@@ -2609,76 +2602,77 @@ void MainWindow::f_receiveSVC(QByteArray str)
             auto parts = str.mid(str.indexOf(":") + 1,
                                  str.indexOf("\r") - str.indexOf(":") - 1)
                     .split(',');
-            for (int i = 0; i < parts.count(); i++) {
+            for (int i = 0; i < parts.count(); i++)
+            {
                 switch (i) {
                 case 0:
-                    if (parts[i] == "1") {
-                        ui->label_Lift2Present->setStyleSheet("background-color: green");
+                    if (parts[i] == "1")
+                    {
+                        // ui->label_Lift2Present->setStyleSheet("background-color: green");
                         ui->check_lift2_deactivate->setText("set deactive");
                         ui->check_lift2_deactivate->setChecked(1);
-                    } else {
-                        ui->label_Lift2Present->setStyleSheet("background-color: Red");
+                    }
+                    else
+                    {
+                        // ui->label_Lift2Present->setStyleSheet("background-color: Red");
                         ui->check_lift2_deactivate->setText("activate");
                         ui->check_lift2_deactivate->setChecked(0);
                     }
                     break;
                 case 1:
                     ui->line_lift2_wafersensor_height_2->setPalette(palSchrift);
-                    ui->line_lift2_wafersensor_height_mm_2->setPalette(palSchrift);
+                    // ui->line_lift2_wafersensor_height_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_lift2_wafersensor_height_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift2_wafersensor_height_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift2_wafersensor_height_2->setText(parts[i]);
                     break;
                 case 2: // Unload operator height
                     ui->line_lift2_unload_height_2->setPalette(palSchrift);
-                    ui->line_lift2_unload_height_mm_2->setPalette(palSchrift);
+                    // ui->line_lift2_unload_height_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_lift2_unload_height_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift2_unload_height_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift2_unload_height_2->setText(parts[i]);
                     break;
                 case 3: // XY-Loader height
                     ui->line_lift2_xyloader_height_2->setPalette(palSchrift);
-                    ui->line_lift2_xyloader_height_mm_2->setPalette(palSchrift);
+                    // ui->line_lift2_xyloader_height_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_lift2_xyloader_height_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift2_xyloader_height_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift2_xyloader_height_2->setText(parts[i]);
                     break;
                 case 4: // Measuring Unit Height
                     ui->line_lift2_measuring_height_2->setPalette(palSchrift);
-                    ui->line_lift2_measuring_height_mm_2->setPalette(palSchrift);
+                    // ui->line_lift2_measuring_height_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoH;
-                    ui->line_lift2_measuring_height_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift2_measuring_height_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift2_measuring_height_2->setText(parts[i]);
                     break;
                 case 5: // Tilt present
-                    if (parts[i] == "1") {
-                        ui->label_Tilt2Present->setStyleSheet("background-color: green");
+                    if (parts[i] == "1")
+                    {
+                        // ui->label_Tilt2Present->setStyleSheet("background-color: green");
                         ui->check_tilt2_deactivate->setText("deactivate");
                         ui->check_tilt2_deactivate->setChecked(1);
-                    } else {
-                        ui->label_Tilt2Present->setStyleSheet("background-color: Red");
+                    }
+                    else
+                    {
+                        // ui->label_Tilt2Present->setStyleSheet("background-color: Red");
                         ui->check_tilt2_deactivate->setText("activate");
                         ui->check_tilt2_deactivate->setChecked(0);
                     }
                     break;
                 case 6: // Tilt on position
                     ui->line_lift2_tiltactpos_2->setPalette(palSchrift);
-                    ui->line_lift2_tiltactpos_mm_2->setPalette(palSchrift);
+                    // ui->line_lift2_tiltactpos_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoT;
-                    ui->line_lift2_tiltactpos_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift2_tiltactpos_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift2_tiltactpos_2->setText(parts[i]);
                     break;
                 case 7: // Tilt off position
                     ui->line_lift2_tiltinactpos_2->setPalette(palSchrift);
-                    ui->line_lift2_tiltinactpos_mm_2->setPalette(palSchrift);
+                    // ui->line_lift2_tiltinactpos_mm_2->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoT;
-                    ui->line_lift2_tiltinactpos_mm_2->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_lift2_tiltinactpos_mm_2->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_lift2_tiltinactpos_2->setText(parts[i]);
                     break;
                 case 8: // Wafertype thin
@@ -2720,73 +2714,65 @@ void MainWindow::f_receiveSVC(QByteArray str)
             float tmpResoY = getResolution("Loader y - motor").toFloat();
             float tmpfloat = 0.000000;
 
-            auto parts = str.mid(str.indexOf(":") + 1,
-                                 str.indexOf("\r") - str.indexOf(":") - 1)
-                    .split(',');
-            for (int i = 0; i < parts.count(); i++) {
-                switch (i) {
+            auto parts = str.mid(str.indexOf(":") + 1, str.indexOf("\r") - str.indexOf(":") - 1).split(',');
+            for (int i = 0; i < parts.count(); i++)
+            {
+                switch (i)
+                {
                 case 0: // x-L1 position
                     ui->line_loader_xlift1pos_2->setPalette(palSchrift);
-                    ui->line_loader_xlift1pos_4->setPalette(palSchrift);
+                    // ui->line_loader_xlift1pos_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoX;
-                    ui->line_loader_xlift1pos_4->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loader_xlift1pos_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loader_xlift1pos_2->setText(parts[i]);
                     break;
                 case 1: // x-L2 position
                     ui->line_loader_xlift2pos_2->setPalette(palSchrift);
-                    ui->line_loader_xlift2pos_4->setPalette(palSchrift);
+                    // ui->line_loader_xlift2pos_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoX;
-                    ui->line_loader_xlift2pos_4->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loader_xlift2pos_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loader_xlift2pos_2->setText(parts[i]);
                     break;
                 case 2: // x-PA free position
                     ui->line_loader_xpreafreepos_2->setPalette(palSchrift);
-                    ui->line_loader_xpreafreepos_4->setPalette(palSchrift);
+                    // ui->line_loader_xpreafreepos_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoX;
-                    ui->line_loader_xpreafreepos_4->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loader_xpreafreepos_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loader_xpreafreepos_2->setText(parts[i]);
                     break;
                 case 3: // x-PA position
                     ui->line_loader_xpreapos_2->setPalette(palSchrift);
-                    ui->line_loader_xpreapos_4->setPalette(palSchrift);
+                    // ui->line_loader_xpreapos_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoX;
-                    ui->line_loader_xpreapos_4->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loader_xpreapos_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loader_xpreapos_2->setText(parts[i]);
                     break;
                 case 4: // y-L1 position
                     ui->line_loader_ylift1inpos_2->setPalette(palSchrift);
-                    ui->line_loader_ylift1inpos_4->setPalette(palSchrift);
+                    // ui->line_loader_ylift1inpos_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoY;
-                    ui->line_loader_ylift1inpos_4->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loader_ylift1inpos_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loader_ylift1inpos_2->setText(parts[i]);
                     break;
                 case 5: // y-L2 position
                     ui->line_loader_ylift2inpos_2->setPalette(palSchrift);
-                    ui->line_loader_ylift2inpos_4->setPalette(palSchrift);
+                    // ui->line_loader_ylift2inpos_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoY;
-                    ui->line_loader_ylift2inpos_4->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loader_ylift2inpos_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loader_ylift2inpos_2->setText(parts[i]);
                     break;
                 case 6: // y-PA position
                     ui->line_loader_ypreapos_2->setPalette(palSchrift);
-                    ui->line_loader_ypreapos_4->setPalette(palSchrift);
+                    // ui->line_loader_ypreapos_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoY;
-                    ui->line_loader_ypreapos_4->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loader_ypreapos_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loader_ypreapos_2->setText(parts[i]);
                     break;
                 case 7: // y-Out lift position
                     ui->line_loader_youtlift_2->setPalette(palSchrift);
-                    ui->line_loader_youtlift_4->setPalette(palSchrift);
+                    // ui->line_loader_youtlift_4->setPalette(palSchrift);
                     tmpfloat = parts[i].toFloat(&ok) / tmpResoY;
-                    ui->line_loader_youtlift_4->setText(
-                                QString::number(tmpfloat, 'f', 3));
+                    // ui->line_loader_youtlift_4->setText(QString::number(tmpfloat, 'f', 3));
                     ui->line_loader_youtlift_2->setText(parts[i]);
                     break;
                 case 8: // y-In lift displacement
@@ -2917,8 +2903,8 @@ void MainWindow::f_receiveSVC(QByteArray str)
                     ui->line_wobphispeed_2->setText(parts[i]);
                     break;
                 case 16: // Reader displacement
-                    ui->line_readdispl->setPalette(palSchrift);
-                    ui->line_readdispl->setText(parts[i]);
+                    ui->line_readdispl_2->setPalette(palSchrift);
+                    ui->line_readdispl_2->setText(parts[i]);
                     break;
                 case 17: // Wobbler displacement
                     // ui->line_wobbdispl->setPalette(palSchrift);
@@ -4050,26 +4036,28 @@ void MainWindow::f_receiveSVC(QByteArray str)
             } else if (tmpjob == 35) // cal Sensor Lift
             {
                 float val;
-                if (calSensHeight) {
+                if (calSensHeight)
+                {
                     ui->radio_lift1_addtohgt->setChecked(0);
                     float tmpReso = getResolution("Lift1 height motor").toFloat();
                     float height = (float)hexdata * 1.0;
                     val = height / tmpReso;
-                    ui->line_lift1_xyloader_height_mm->setText(
-                                QString::number(val, 'f', 3));
+                    ui->line_lift1_xyloader_height_mm->setText(QString::number(val, 'f', 3));
                     val = hexdata;
                     ui->line_lift1_xyloader_height->setText(QString::number(val));
                     ui->push_lift1_cal_sensheight->setStyleSheet(backLightGreen);
                     calSensHeight = 0;
-                } else if (calSensHeight2) {
-                    ui->radio_lift2_addtohgt->setChecked(0);
+                }
+                else if (calSensHeight2)
+                {
+                    // ui->radio_lift2_addtohgt->setChecked(0);
                     float tmpReso = getResolution("Lift2 height motor").toFloat();
                     float height = (float)hexdata * 1.0;
                     val = height / tmpReso;
                     ui->line_lift2_xyloader_height_mm->setText(QString::number(hexdata));
                     val = hexdata;
                     ui->line_lift2_xyloader_height->setText(QString::number(hexdata));
-                    ui->push_lift2_cal_senshgt->setStyleSheet(backLightGreen);
+                    // ui->push_lift2_cal_senshgt->setStyleSheet(backLightGreen);
                     calSensHeight2 = 0;
                 }
             } else if (tmpjob == 38) // getmap Auswertung
@@ -4695,38 +4683,55 @@ void MainWindow::f_receiveSVC(QByteArray str)
                 cmdaktiv = 4;
                 partmot++;
             }
-        } else if (cmdaktiv == 1) // 1 = Setupdaten
+        }
+        else if (cmdaktiv == 1) // 1 = Setupdaten
         {
             tmpstat = 1;
             cmdaktiv = 0;
             serialSendFeeder(EEPROM);
-        } else if (retdata == 0) {
-            if (cmdaktiv == 4) {
-                if (motall) {
+        }
+        else if (retdata == 0)
+        {
+            if (cmdaktiv == 4)
+            {
+                if (motall)
+                {
                     ui->label_INIT_mot_dataok->show();
                     ui->label_INIT_mot_dataok->setStyleSheet(backLightGreen);
                     ui->label_INIT_mot_dataok->setText("INSMOTOR data ok");
-                } else {
-                    ui->label_mot_dataok->setStyleSheet(backLightGreen);
-                    ui->label_mot_dataok->setText("INSMOTOR.ini ok");
+                }
+                else
+                {
+                    // ui->label_mot_dataok->setStyleSheet(backLightGreen);
+                    // ui->label_mot_dataok->setText("INSMOTOR.ini ok");
                 }
                 cmdaktiv = 0;
-            } else {
+            }
+            else
+            {
                 ui->label_INIT_store_ok->setStyleSheet(backLightGreen);
                 ui->label_INIT_store_ok->setText("INSSETUP data ok");
             }
-        } else {
-            if (cmdaktiv == 4) {
-                if (motall) {
+        }
+        else
+        {
+            if (cmdaktiv == 4)
+            {
+                if (motall)
+                {
                     ui->label_INIT_mot_dataok->show();
                     ui->label_INIT_mot_dataok->setStyleSheet(backRed);
                     ui->label_INIT_mot_dataok->setText("INSMOTOR data error");
-                } else {
-                    ui->label_mot_dataok->setStyleSheet(backRed);
-                    ui->label_mot_dataok->setText("INSMOTOR.ini error");
+                }
+                else
+                {
+                    // ui->label_mot_dataok->setStyleSheet(backRed);
+                    // ui->label_mot_dataok->setText("INSMOTOR.ini error");
                 }
                 cmdaktiv = 0;
-            } else {
+            }
+            else
+            {
                 ui->label_INIT_store_ok->setStyleSheet(backRed);
                 ui->label_INIT_store_ok->setText("INSSETUP data error");
             }
@@ -5237,8 +5242,10 @@ void MainWindow::f_receiveSVC(QByteArray str)
         logswitch(1);
     }
 }
-void MainWindow::f_setVAClabels(int channel) {
-    switch (channel) {
+void MainWindow::f_setVAClabels(int channel)
+{
+    switch (channel)
+    {
     case 10: // LD OFF
         ui->check_loader_vacuum->setChecked(0);
         ui->check_loader_vacuum->setStyleSheet(backLightGrey);
@@ -5271,6 +5278,8 @@ void MainWindow::f_setVAClabels(int channel) {
         ui->check_vac_aligner_4->setStyleSheet(backLightGrey);
         ui->check_preavac_2->setChecked(0);
         ui->check_preavac_2->setStyleSheet(backLightGrey);
+        ui->check_preavac_3->setChecked(0);
+        ui->check_preavac_3->setStyleSheet(backLightGrey);
         ui->check_preavac->setChecked(0);
         ui->check_preavac->setStyleSheet(backLightGrey);
         break;
@@ -5282,6 +5291,8 @@ void MainWindow::f_setVAClabels(int channel) {
         ui->check_vac_aligner_4->setStyleSheet(backLightGreen);
         ui->check_preavac_2->setChecked(1);
         ui->check_preavac_2->setStyleSheet(backLightGreen);
+        ui->check_preavac_3->setChecked(1);
+        ui->check_preavac_3->setStyleSheet(backLightGreen);
         ui->check_preavac->setChecked(1);
         ui->check_preavac->setStyleSheet(backLightGreen);
         break;
@@ -5293,6 +5304,8 @@ void MainWindow::f_setVAClabels(int channel) {
         ui->check_vac_aligner_4->setStyleSheet(backLightGrey);
         ui->check_preavac_2->setChecked(1);
         ui->check_preavac_2->setStyleSheet(backLightGrey);
+        ui->check_preavac_3->setChecked(1);
+        ui->check_preavac_3->setStyleSheet(backLightGrey);
         ui->check_preavac->setChecked(1);
         ui->check_preavac->setStyleSheet(backLightGrey);
         break;
@@ -5404,26 +5417,31 @@ void MainWindow::f_setVAClabels(int channel) {
         break;
     }
 }
-void MainWindow::f_setRESlabels(int axis) {
-    switch (axis) {
+void MainWindow::f_setRESlabels(int axis)
+{
+    switch (axis)
+    {
     case 0:
         ui->label_res_LDY->setStyleSheet(backLightGreen);
         ui->p_loader_initydrive->setStyleSheet(backLightGreen);
         ui->label_res_LDX->setStyleSheet(backLightGreen);
         ui->p_loader_initxdrive->setStyleSheet(backLightGreen);
-        if (ui->check_lift1_deactivate->isChecked()) {
+        if (ui->check_lift1_deactivate->isChecked())
+        {
             ui->label_res_L1H->setStyleSheet(backLightGreen);
             ui->push_lift1_init_height->setStyleSheet(backLightGreen);
         }
-        if (ui->check_lift2_deactivate->isChecked()) {
+        if (ui->check_lift2_deactivate->isChecked())
+        {
             ui->label_res_L2H->setStyleSheet(backLightGreen);
-            ui->p_lift2_init_height->setStyleSheet(backLightGreen);
+            ui->push_lift2_init_height->setStyleSheet(backLightGreen);
         }
         ui->label_resWCH->setStyleSheet(backLightGreen);
         ui->p_wc_initheight->setStyleSheet(backLightGreen);
         ui->label_WCP->setStyleSheet(backLightGreen);
         ui->p_wc_initangle->setStyleSheet(backLightGreen);
-        if (ui->check_wob_deactiv->isChecked()) {
+        if (ui->check_wob_deactiv->isChecked())
+        {
             ui->label_resPAT->setStyleSheet(backLightGreen);
             ui->p_INIT_PA_Tilt->setStyleSheet(backLightGreen);
             ui->label_resPAR->setStyleSheet(backLightGreen);
@@ -5433,20 +5451,23 @@ void MainWindow::f_setRESlabels(int axis) {
         ui->p_INIT_PA_Height->setStyleSheet(backLightGreen);
         ui->label_resPAP->setStyleSheet(backLightGreen);
         ui->p_INIT_PA_Phi->setStyleSheet(backLightGreen);
-        if (ui->check_tilt1_deactivate->isChecked()) {
+        if (ui->check_tilt1_deactivate->isChecked())
+        {
             ui->label_res_L1T->setStyleSheet(backLightGreen);
             ui->push_lift1_init_tilt->setStyleSheet(backLightGreen);
         }
-        if (ui->check_tilt2_deactivate->isChecked()) {
+        if (ui->check_tilt2_deactivate->isChecked())
+        {
             ui->label_res_L2T->setStyleSheet(backLightGreen);
-            ui->p_lift2_init_tilt->setStyleSheet(backLightGreen);
+            ui->push_lift2_init_tilt->setStyleSheet(backLightGreen);
         }
         break;
     default:
         break;
     }
 }
-void MainWindow::f_receiveLOG(QByteArray str) {
+void MainWindow::f_receiveLOG(QByteArray str)
+{
     QString data;
     QString counter;
     int tmpdata;
@@ -5464,16 +5485,14 @@ void MainWindow::f_receiveLOG(QByteArray str) {
         int nr;      // fehlernummer
         int counter; // Fehlercounter
 
-        auto parts =
-                str.mid(str.indexOf("_") + 1, str.indexOf("\r") - str.indexOf("_") - 1)
-                .split(','); // Fehlercodierung durch Komma getrennt
+        auto parts = str.mid(str.indexOf("_") + 1, str.indexOf("\r") - str.indexOf("_") - 1).split(','); // Fehlercodierung durch Komma getrennt
         qDebug() << "parts" << parts;
-        if (parts.count() >= 4) {
+        if (parts.count() >= 4)
+        {
             logout
                     << parts[0] << " " << parts[1] << " " << parts[2] << " " << parts[3]
                        << " "
-                       << parts[4].append(
-                              '\n'); // Funktionsblock, CMD, ID, Fehlernummer, Fehlercounter
+                       << parts[4].append('\n'); // Funktionsblock, CMD, ID, Fehlernummer, Fehlercounter
             fblock = parts[0].toInt(&ok, 16);
             cmd = parts[1].toInt(&ok, 16);
             cmdid = parts[2].toInt(&ok, 16);
@@ -5482,7 +5501,8 @@ void MainWindow::f_receiveLOG(QByteArray str) {
             QString counterstr = QString::number(counter);
             f_decodeWarnlog(fblock, cmd, cmdid, nr, counterstr);
         }
-    } else if (str.left(2) == QString("//")) // "//"
+    }
+    else if (str.left(2) == QString("//")) // "//"
     {
         QString temp = str.mid(2, str.indexOf("\r")).trimmed();
         auto parts = temp.split(','); // Fehlercodierung durch Komma getrennt
@@ -5495,7 +5515,8 @@ void MainWindow::f_receiveLOG(QByteArray str) {
             ui->line_respf_mcnt->setText(parts[2]);
             ui->line_respf_pcnt->setText(parts[3]);
         }
-    } else if (str.left(1) == QString("/")) // "/"
+    }
+    else if (str.left(1) == QString("/")) // "/"
     {
         auto parts =
                 str.mid(str.indexOf("/") + 1, str.indexOf("\r") - str.indexOf("/") - 1)
@@ -5532,12 +5553,15 @@ void MainWindow::f_receiveLOG(QByteArray str) {
         }
     }
 
-    if (errlogwait) {
+    if (errlogwait)
+    {
         qDebug() << "f_receiveLOG errlogwait" << errlogwait;
         errlogwait = 0;
         r_logon = 1;
         serialSendFeeder(senddata);
-    } else if (r_logon) {
+    }
+    else if (r_logon)
+    {
         qDebug() << "f_receiveLOG r_logon" << r_logon;
         r_logon = 0;
         logswitch(1);
@@ -7697,45 +7721,57 @@ void MainWindow::set_Resetliste(int list) // liest RAC re.all aus
     if (list & 0b0000000000000001) // reset complete
     {
 
-    } else {
+    }
+    else
+    {
     }
     if (list & 0b0000000000000010) // reset lift1 height
     {
         ui->label_res_L1H->setStyleSheet(backLightGreen);
         ui->push_lift1_init_height->setStyleSheet(backLightGreen);
-    } else {
+    }
+    else
+    {
         ui->label_res_L1H->setStyleSheet(backLightRed);
         ui->push_lift1_init_height->setStyleSheet(backDefault);
     }
     if (list & 0b0000000000000100) // reset lift2 height
     {
         ui->label_res_L2H->setStyleSheet(backLightGreen);
-        ui->p_lift2_init_height->setStyleSheet(backLightGreen);
-    } else {
+        ui->push_lift2_init_height->setStyleSheet(backLightGreen);
+    }
+    else
+    {
         ui->label_res_L2H->setStyleSheet(backLightRed);
-        ui->p_lift2_init_height->setStyleSheet(backDefault);
+        ui->push_lift2_init_height->setStyleSheet(backDefault);
     }
     if (list & 0b0000000000001000) // reset lift1 tilt
     {
         ui->label_res_L1T->setStyleSheet(backLightGreen);
         ui->push_lift1_init_tilt->setStyleSheet(backLightGreen);
-    } else {
+    }
+    else
+    {
         ui->label_res_L1T->setStyleSheet(backLightRed);
         ui->push_lift1_init_tilt->setStyleSheet(backDefault);
     }
     if (list & 0b0000000000010000) // reset lift2 tilt
     {
         ui->label_res_L2T->setStyleSheet(backLightGreen);
-        ui->p_lift2_init_tilt->setStyleSheet(backLightGreen);
-    } else {
+        // ui->p_lift2_init_tilt->setStyleSheet(backLightGreen);
+    }
+    else
+    {
         ui->label_res_L2T->setStyleSheet(backLightRed);
-        ui->p_lift2_init_tilt->setStyleSheet(backDefault);
+        ui->push_lift2_init_tilt->setStyleSheet(backDefault);
     }
     if (list & 0b0000000000100000) // reset loader x
     {
         ui->label_res_LDX->setStyleSheet(backLightGreen);
         ui->p_loader_initxdrive->setStyleSheet(backLightGreen);
-    } else {
+    }
+    else
+    {
         ui->label_res_LDX->setStyleSheet(backLightRed);
         ui->p_loader_initxdrive->setStyleSheet(backDefault);
     }
@@ -7743,7 +7779,9 @@ void MainWindow::set_Resetliste(int list) // liest RAC re.all aus
     {
         ui->label_res_LDY->setStyleSheet(backLightGreen);
         ui->p_loader_initydrive->setStyleSheet(backLightGreen);
-    } else {
+    }
+    else
+    {
         ui->label_res_LDY->setStyleSheet(backLightRed);
         ui->p_loader_initydrive->setStyleSheet(backDefault);
     }
@@ -8424,26 +8462,17 @@ void MainWindow::set_feederliste(QString data)
                 ui->line_log_WC10->setStyleSheet(backLightBlue);
             else if ((d[3] & 0x03) == 3)
                 ui->line_log_WC10->setStyleSheet(backLightYello);
-            else
-                ui->line_log_WC10->setStyleSheet(backLightGrey);
+            else ui->line_log_WC10->setStyleSheet(backLightGrey);
             ui->line_log_WC9->setText(QString::number((d[3] & 0x0C) >> 2));
-            if ((d[3] & 0x0C) >> 2 == 1)
-                ui->line_log_WC9->setStyleSheet(backLightGreen);
-            else if ((d[3] & 0x0C) >> 2 == 2)
-                ui->line_log_WC9->setStyleSheet(backLightBlue);
-            else if ((d[3] & 0x0C) >> 2 == 3)
-                ui->line_log_WC9->setStyleSheet(backLightYello);
-            else
-                ui->line_log_WC9->setStyleSheet(backLightGrey);
+            if ((d[3] & 0x0C) >> 2 == 1) ui->line_log_WC9->setStyleSheet(backLightGreen);
+            else if ((d[3] & 0x0C) >> 2 == 2) ui->line_log_WC9->setStyleSheet(backLightBlue);
+            else if ((d[3] & 0x0C) >> 2 == 3) ui->line_log_WC9->setStyleSheet(backLightYello);
+            else ui->line_log_WC9->setStyleSheet(backLightGrey);
             ui->line_log_WC11->setText(QString::number((d[2] & 0x0C) >> 2));
-            if ((d[2] & 0x0C) >> 2 == 1)
-                ui->line_log_WC11->setStyleSheet(backLightGreen);
-            else if ((d[2] & 0x0C) >> 2 == 2)
-                ui->line_log_WC11->setStyleSheet(backLightBlue);
-            else if ((d[2] & 0x0C) >> 2 == 3)
-                ui->line_log_WC11->setStyleSheet(backLightYello);
-            else
-                ui->line_log_WC11->setStyleSheet(backLightGrey);
+            if ((d[2] & 0x0C) >> 2 == 1) ui->line_log_WC11->setStyleSheet(backLightGreen);
+            else if ((d[2] & 0x0C) >> 2 == 2) ui->line_log_WC11->setStyleSheet(backLightBlue);
+            else if ((d[2] & 0x0C) >> 2 == 3) ui->line_log_WC11->setStyleSheet(backLightYello);
+            else ui->line_log_WC11->setStyleSheet(backLightGrey);
             packcount++;
             break;
         case 5:
@@ -9840,36 +9869,48 @@ void MainWindow::f_APIid(QString apidata, bool err) //
                 ui->label_API_no4->show();
                 VECselslots1.clear();
                 deletslots(1);
-            } else {
-                if (sizeL1 == 7) {
+            }
+            else
+            {
+                if (sizeL1 == 7)
+                {
                     ui->line_sensorlift1->setText("8");
                     ui->label_API_no8->hide();
                     ui->combo_8inchsel_api->show();
-                } else if (sizeL1 == 5) {
+                }
+                else if (sizeL1 == 5)
+                {
                     ui->line_sensorlift1->setText("6");
                     ui->label_API_no6->hide();
                     ui->combo_6inchsel_api->show();
-                } else if (sizeL1 == 1) {
+                }
+                else if (sizeL1 == 1)
+                {
                     ui->line_sensorlift1->setText("4");
                     ui->label_API_no4->hide();
                     ui->combo_4inchsel_api->show();
                 }
             }
-            if (Cass2 == 0) {
+            if (Cass2 == 0)
+            {
                 ui->line_sensorlift2->setText("--");
-                if (ui->groupBox_Lift2->isChecked() == true) {
+                if (ui->groupBox_Lift2->isChecked() == true)
+                {
                     ui->label_API_no8->show();
                     ui->combo_8inchsel_api->hide();
                 }
-                if (ui->groupBox_Lift2->isChecked() == true) {
+                if (ui->groupBox_Lift2->isChecked() == true)
+                {
                     ui->label_API_no6->show();
                     ui->combo_6inchsel_api->hide();
                 }
-                if (ui->groupBox_Lift2->isChecked() == true) {
+                if (ui->groupBox_Lift2->isChecked() == true)
+                {
                     ui->label_API_no5->show();
                     ui->combo_5inchsel_api->hide();
                 }
-                if (ui->groupBox_Lift2->isChecked() == true) {
+                if (ui->groupBox_Lift2->isChecked() == true)
+                {
                     ui->label_API_no4->show();
                     ui->combo_4inchsel_api->hide();
                 }
@@ -10995,8 +11036,7 @@ void MainWindow::f_APIid(QString apidata, bool err) //
 }
 void MainWindow::f_apitestpolling()
 {
-    if (apitestpolling->isActive())
-        apitestpolling->stop();
+    if (apitestpolling->isActive()) apitestpolling->stop();
     api_poll();
 }
 // Stylesheets
@@ -11019,12 +11059,29 @@ void MainWindow::setRESLabelRed()
 }
 void MainWindow::setStyleSheets()
 {
-    qApp->setStyleSheet("QLineEdit { background-color: yellow }");
+    qApp->setStyleSheet("QGroupBox {"
+                            "background-color: #fffbf6; "
+                            "border: 1px solid #f5e6db; "
+                            "border-radius: 4px; margin-top: 10px}"
+                        "QGroupBox::title {"
+                            "subcontrol-origin: margin; "
+                            "subcontrol-position: top left; "
+                            "padding: 0 5px}"
+                        "QCheckBox::indicator {"
+                            "width: 16px; "
+                            "height: 16px; "
+                            "border: 1px solid #5A5A5A; "
+                            "background-color: white}"
+                        "QCheckBox::indicator:checked {"
+                            "background-color: #4CAF50; "
+                            "image: url(:/images/statusDone.ico)}");
+
+
 
     // palBackground.setColor(QPalette::Base, QColor(45, 45, 255));
     // palBackground2.setColor(QPalette::Base, QColor(45, 45, 10));
-    // palSchrift.setColor(QPalette::Text, QColor(0, 0, 255)); // blaue Schrift für zurück gelesene Parameter
-    // palSchrift0.setColor(QPalette::Text,QColor(0, 0, 0)); // schwarze Schrift für ini-Daten
+     palSchrift.setColor(QPalette::Text, QColor(0, 0, 255)); // blaue Schrift für zurück gelesene Parameter
+     palSchrift0.setColor(QPalette::Text,QColor(0, 0, 0)); // schwarze Schrift für ini-Daten
     // ui->p_help_cass->setStyleSheet("color: blue");
     // ui->tabWidget->setStyleSheet(col_Beige);
     // ui->tabWidget_2->setStyleSheet(col_Grey);
@@ -11810,15 +11867,15 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                             case 5: // Tilt present
                                 if (line.mid(line.indexOf("=") + 1, 1) == "1")
                                 {
-                                    ui->label_Tilt1Present->setStyleSheet("background-color: green");
-                                    ui->label_Tilt1_present->setText("Tilt1 active");
+                                    // ui->label_Tilt1Present->setStyleSheet("background-color: green");
+                                    // ui->label_Tilt1_present->setText("Tilt1 active");
                                     ui->check_tilt1_deactivate->setText("deactivate");
                                     ui->check_tilt1_deactivate->setChecked(1);
                                 }
                                 else
                                 {
-                                    ui->label_Tilt1Present->setStyleSheet("background-color: Red");
-                                    ui->label_Tilt1_present->setText("Tilt1 deactive");
+                                    // ui->label_Tilt1Present->setStyleSheet("background-color: Red");
+                                    // ui->label_Tilt1_present->setText("Tilt1 deactive");
                                     ui->check_tilt1_deactivate->setText("activate");
                                     ui->check_tilt1_deactivate->setChecked(0);
                                 }
@@ -11924,7 +11981,7 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                                     ui->radio_lift2_notinstalled->setChecked(1);
                                     ui->check_lift2_deactivate->setChecked(0);
                                     ui->frame_lift2_selectSMIF->hide();
-                                    ui->frame_Lift2_leica->hide();
+                                    ui->frame_lift2_leica->hide();
                                     ui->p_readBoard2->setDisabled(1);
                                     ui->p_RES_L2_Height->setDisabled(1);
                                     ui->label_res_L2H->setStyleSheet("QLabel { background-color: grey }");
@@ -11960,16 +12017,16 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                             case 5: // Tilt present
                                 if (line.mid(line.indexOf("=") + 1, 1) == "1")
                                 {
-                                    ui->label_Tilt2Present->setStyleSheet("background-color: green");
-                                    ui->label_Tilt2_present->setText("Tilt2 active");
+                                    // ui->label_Tilt2Present->setStyleSheet("background-color: green");
+                                    // ui->label_Tilt2_present->setText("Tilt2 active");
                                     ui->check_tilt2_deactivate->setText("deactivate");
                                     ui->check_tilt2_deactivate->setChecked(1);
                                     ui->p_RES_L2_Tilt->setDisabled(0);
                                 }
                                 else
                                 {
-                                    ui->label_Tilt2Present->setStyleSheet("background-color: Red");
-                                    ui->label_Tilt2_present->setText("Tilt2 deactive");
+                                    // ui->label_Tilt2Present->setStyleSheet("background-color: Red");
+                                    // ui->label_Tilt2_present->setText("Tilt2 deactive");
                                     ui->check_tilt2_deactivate->setText("activate");
                                     ui->check_tilt2_deactivate->setChecked(0);
                                     ui->p_RES_L2_Tilt->setDisabled(1);
@@ -11999,12 +12056,12 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                                     if (ui->radio_lift2_notinstalled->isChecked() == 0)
                                     {
                                         ui->radio_lift2_default->setChecked(1);
-                                        ui->frame_Lift2_leica->show();
+                                        ui->frame_lift2_leica->show();
                                         ui->frame_lift2_selectSMIF->hide();
                                     }
                                     else
                                     {
-                                        ui->frame_Lift2_leica->hide();
+                                        ui->frame_lift2_leica->hide();
                                     }
                                     ui->frame_lift2_selectSMIF->hide();
                                 }
@@ -12017,7 +12074,7 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                                     ui->combo_lift2_SMIF_select->itemText(0);
                                     ui->combo_lift2_SMIF_select->setCurrentText(linestr);
 
-                                    ui->frame_Lift2_leica->hide();
+                                    ui->frame_lift2_leica->hide();
                                 }
                                 SMIFTYPE2 = linestr;
                                 break;
@@ -12604,38 +12661,37 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
                     do
                     {
                         line = f.readLine();
-                        if (line.mid(0, line.indexOf('=')).toLower() == "low_tilt") {
-                            ui->line_joy_tiltmin->setText(
-                                        line.mid(line.indexOf('=') + 1, line.indexOf('\n'))
-                                        .trimmed());
-                        } else if (line.mid(0, line.indexOf('=')).toLower() == "up_tilt") {
-                            ui->line_joy_tiltmax->setText(
-                                        line.mid(line.indexOf('=') + 1, line.indexOf('\n'))
-                                        .trimmed());
-                        } else if (line.mid(0, line.indexOf('=')).toLower() == "low_rot") {
-                            ui->line_joy_rotmin->setText(
-                                        line.mid(line.indexOf('=') + 1, line.indexOf('\n'))
-                                        .trimmed());
-                        } else if (line.mid(0, line.indexOf('=')).toLower() == "up_rot") {
-                            ui->line_joy_rotmax->setText(
-                                        line.mid(line.indexOf('=') + 1, line.indexOf('\n'))
-                                        .trimmed());
-                        } else if (line.mid(0, line.indexOf('=')).toLower() == "thres") {
-                            ui->line_joy_threshold->setText(
-                                        line.mid(line.indexOf('=') + 1, line.indexOf('\n'))
-                                        .trimmed());
-                        } else if (line.mid(0, line.indexOf('=')).toLower() == "speed_tiltup") {
-                            ui->line_joy_tiltspeedup->setText(
-                                        line.mid(line.indexOf('=') + 1, line.indexOf('\n'))
-                                        .trimmed());
-                        } else if (line.mid(0, line.indexOf('=')).toLower() == "speed_tiltdwn") {
-                            ui->line_joy_tiltspeeddown->setText(
-                                        line.mid(line.indexOf('=') + 1, line.indexOf('\n'))
-                                        .trimmed());
-                        } else if (line.mid(0, line.indexOf('=')).toLower() == "speed_rotcw") {
-                            ui->line_joy_rotCW->setText(
-                                        line.mid(line.indexOf('=') + 1, line.indexOf('\n'))
-                                        .trimmed());
+                        if (line.mid(0, line.indexOf('=')).toLower() == "low_tilt")
+                        {
+                            ui->line_joy_tiltmin->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        }
+                        else if (line.mid(0, line.indexOf('=')).toLower() == "up_tilt")
+                        {
+                            ui->line_joy_tiltmax->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        }
+                        else if (line.mid(0, line.indexOf('=')).toLower() == "low_rot")
+                        {
+                            ui->line_joy_rotmin->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        }
+                        else if (line.mid(0, line.indexOf('=')).toLower() == "up_rot")
+                        {
+                            ui->line_joy_rotmax->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        }
+                        else if (line.mid(0, line.indexOf('=')).toLower() == "thres")
+                        {
+                            ui->line_joy_threshold->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        }
+                        else if (line.mid(0, line.indexOf('=')).toLower() == "speed_tiltup")
+                        {
+                            ui->line_joy_tiltspeedup->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        }
+                        else if (line.mid(0, line.indexOf('=')).toLower() == "speed_tiltdwn")
+                        {
+                            ui->line_joy_tiltspeeddown->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
+                        }
+                        else if (line.mid(0, line.indexOf('=')).toLower() == "speed_rotcw")
+                        {
+                            ui->line_joy_rotCW->setText(line.mid(line.indexOf('=') + 1, line.indexOf('\n')).trimmed());
                         }
                         else if (line.mid(0, line.indexOf('=')).toLower() == "speed_rotccw")
                         {
@@ -12660,7 +12716,8 @@ void MainWindow::SETUP_FILE(const QString &arg1) // SetupINI-File einlesen
 
                           //  err_msgbox("VAL WOBJOY" + (line.mid(line.indexOf("=") + 1, 2)));
                         }
-                    } while (line.at(0) != ';');
+                    }
+                    while (line.at(0) != ';');
                     tmpline = line;
                 }
                 // else if (line.mid(1, line.size() - 3) == "MISC")
@@ -13898,15 +13955,14 @@ void MainWindow::STORE_FILE_partLIFT(int liftnr) // schreibt Lift-Daten ins INSS
         ui->line_lift1_wafersensor_height->setText(QString::number(heightsteps - unitsteps));
         ui->radio_lift1_addtohgt->setChecked(false);
     }
-    if (liftnr == 2 && ui->radio_lift2_addtohgt->isChecked()) {
+    if (liftnr == 2 && ui->radio_lift2_addtohgt->isChecked())
+    {
         unitsteps = ui->line_lift2_measuring_height->text().toFloat(&ok);
 
         heightsteps = ui->line_lift2_xyloader_height->text().toFloat(&ok);
-        ui->line_lift2_xyloader_height->setText(
-                    QString::number(heightsteps - unitsteps));
+        ui->line_lift2_xyloader_height->setText(QString::number(heightsteps - unitsteps));
         heightsteps = ui->line_lift2_wafersensor_height->text().toFloat(&ok);
-        ui->line_lift2_wafersensor_height->setText(
-                    QString::number(heightsteps - unitsteps));
+        ui->line_lift2_wafersensor_height->setText(QString::number(heightsteps - unitsteps));
         ui->radio_lift2_addtohgt->setChecked(false);
     }
     while (!datain.atEnd())
@@ -14301,7 +14357,8 @@ void MainWindow::STORE_FILE_partLOADER() // schreibt Loader-Daten ins INSSETUP.I
     QTextStream datain(&f);
     QTextStream dataout(&f2);
 
-    while (!datain.atEnd()) {
+    while (!datain.atEnd())
+    {
         QString line = datain.readLine();
         if (line.size() != 0) {
             if (line.at(0) == '[') // all Strings, die mit [ beginnen
@@ -16031,13 +16088,13 @@ void MainWindow::SETUP_FILE_partLIFT(int liftnr) // liest LIFT INI-Daten neu in 
                         tempwc6.append(linestr.toLatin1());
                         if (line.mid(line.indexOf("=") + 1, 1) == "1")
                         {
-                            ui->label_Tilt1Present->setStyleSheet("background-color: green");
+                            // ui->label_Tilt1Present->setStyleSheet("background-color: green");
                             ui->check_tilt1_deactivate->setText("deactivate");
                             ui->check_tilt1_deactivate->setChecked(1);
                         }
                         else
                         {
-                            ui->label_Tilt1Present->setStyleSheet("background-color: Red");
+                            // ui->label_Tilt1Present->setStyleSheet("background-color: Red");
                             ui->check_tilt1_deactivate->setText("activate");
                             ui->check_tilt1_deactivate->setChecked(0);
                         }
@@ -16127,13 +16184,13 @@ void MainWindow::SETUP_FILE_partLIFT(int liftnr) // liest LIFT INI-Daten neu in 
                         if (line.mid(line.indexOf("=") + 1, 1) == "1")
                         {
                             ui->check_lift2_deactivate->setChecked(1);
-                            ui->label_Lift2Present->setStyleSheet("background-color: green");
+                            // ui->label_Lift2Present->setStyleSheet("background-color: green");
                             ui->check_lift2_deactivate->setText("deactivate");
-
-                        } else if (line.mid(line.indexOf("=") + 1, 1) == "0")
+                        }
+                        else if (line.mid(line.indexOf("=") + 1, 1) == "0")
                         {
                             ui->check_lift2_deactivate->setChecked(0);
-                            ui->label_Lift2Present->setStyleSheet("background-color: red");
+                            // ui->label_Lift2Present->setStyleSheet("background-color: red");
                             ui->check_lift2_deactivate->setText("activate");
                         }
                         tempwc1.append(linestr.toLatin1());
@@ -16174,13 +16231,13 @@ void MainWindow::SETUP_FILE_partLIFT(int liftnr) // liest LIFT INI-Daten neu in 
                     {
                         tempwc6.append(linestr.toLatin1());
                         if (line.mid(line.indexOf("=") + 1, 1) == "1") {
-                            ui->label_Tilt2Present->setStyleSheet("background-color: green");
+                            // ui->label_Tilt2Present->setStyleSheet("background-color: green");
                             ui->check_tilt2_deactivate->setText("deactivate");
                             ui->check_tilt2_deactivate->setChecked(1);
                         }
                         else
                         {
-                            ui->label_Tilt2Present->setStyleSheet("background-color: Red");
+                            // ui->label_Tilt2Present->setStyleSheet("background-color: Red");
                             ui->check_tilt2_deactivate->setText("activate");
                             ui->check_tilt2_deactivate->setChecked(0);
                         }
@@ -18109,12 +18166,12 @@ void MainWindow::on_check_lift1_deactivate_stateChanged(int arg1)
 {
     if (arg1 == 2)
     {
-        ui->label_Lift1Present->setStyleSheet("background-color: green");
+        // ui->label_Lift1Present->setStyleSheet("background-color: green");
         ui->label_lift1_present->setText("Lift1 present");
     }
     else if (arg1 == 0)
     {
-        ui->label_Lift1Present->setStyleSheet("background-color: Red");
+        // ui->label_Lift1Present->setStyleSheet("background-color: Red");
         ui->label_lift1_present->setText("Lift1 not present");
     }
 }
@@ -18122,13 +18179,13 @@ void MainWindow::on_check_tilt1_deactivate_stateChanged(int arg1)
 {
     if (arg1 == 2)
     {
-        ui->label_Tilt1Present->setStyleSheet("background-color: green");
-        ui->label_Tilt1_present->setText("Tilt1 present");
+        // ui->label_Tilt1Present->setStyleSheet("background-color: green");
+        // ui->label_Tilt1_present->setText("Tilt1 present");
     }
     else if (arg1 == 0)
     {
-        ui->label_Tilt1Present->setStyleSheet("background-color: Red");
-        ui->label_Tilt1_present->setText("Tilt1 not present");
+        // ui->label_Tilt1Present->setStyleSheet("background-color: Red");
+        // ui->label_Tilt1_present->setText("Tilt1 not present");
     }
 }
 void MainWindow::on_check_lift1_moveconst_stateChanged() // checkbox Motor move -> Sliderfarbe setzen
@@ -18652,13 +18709,13 @@ void MainWindow::on_check_lift2_deactivate_stateChanged(int arg1)
 {
     if (arg1 == 2)
     {
-        ui->label_Lift2Present->setStyleSheet("background-color: green");
-        ui->label_Lift2_present->setText("Lift2 present");
+        // ui->label_Lift2Present->setStyleSheet("background-color: green");
+        // ui->label_Lift2_present->setText("Lift2 present");
     }
     else if (arg1 == 0)
     {
-        ui->label_Lift2Present->setStyleSheet("background-color: Red");
-        ui->label_Lift2_present->setText("Lift2 not present");
+        // ui->label_Lift2Present->setStyleSheet("background-color: Red");
+        // ui->label_Lift2_present->setText("Lift2 not present");
     }
 }
 void MainWindow::on_check_tilt2_deactivate_stateChanged(int arg1)
@@ -18666,13 +18723,13 @@ void MainWindow::on_check_tilt2_deactivate_stateChanged(int arg1)
     qDebug() << arg1;
     if (arg1 == 2)
     {
-        ui->label_Tilt2Present->setStyleSheet("background-color: green");
-        ui->label_Tilt2_present->setText("Tilt2 active");
+        // ui->label_Tilt2Present->setStyleSheet("background-color: green");
+        // ui->label_Tilt2_present->setText("Tilt2 active");
     }
     else if (arg1 == 0)
     {
-        ui->label_Tilt2Present->setStyleSheet("background-color: Red");
-        ui->label_Tilt2_present->setText("Tilt2 not active");
+        // ui->label_Tilt2Present->setStyleSheet("background-color: Red");
+        // ui->label_Tilt2_present->setText("Tilt2 not active");
     }
 }
 void MainWindow::on_check_lift2_moveconst_stateChanged()
@@ -18750,8 +18807,10 @@ void MainWindow::on_push_lift2_cal_intensity_clicked()
         calsens2 = 1;
     }
 }
-void MainWindow::on_push_lift2_store_clicked() { STORE_FILE_partLIFT(2); }
-void MainWindow::on_p_lift2_SMIF_clicked() { changeWidget("SMIF"); }
+void MainWindow::on_push_lift2_store_clicked()
+{ STORE_FILE_partLIFT(2); }
+void MainWindow::on_p_lift2_SMIF_clicked()
+{ changeWidget("SMIF"); }
 void MainWindow::on_p_lift2_constpos_up_pressed()
 {
     if (ui->check_lift2_constfast_up->isChecked())
@@ -18771,72 +18830,91 @@ void MainWindow::on_p_lift2_constpos_up_released()
     serialSendFeeder("$X_2,0,0,2,1,0,0,0,2,1,0,0,0,0\r\n"); // Lift 2 stop
     ui->p_lift2_constpos_up->setStyleSheet(backDefault);
 }
-void MainWindow::on_p_lift2_constpos_down_pressed() {
-    if (ui->check_lift2_constfast_down->isChecked()) {
+void MainWindow::on_p_lift2_constpos_down_pressed()
+{
+    if (ui->check_lift2_constfast_down->isChecked())
+    {
         serialSendFeeder("$X_2,0,0,2,1,0,0,0,2,1,0,3,208,144\r\n"); // Fast 250000
         ui->p_lift2_constpos_down->setStyleSheet(backLightGreen);
-    } else if (ui->check_lift2_constslow_down->isChecked()) {
+    }
+    else if (ui->check_lift2_constslow_down->isChecked())
+    {
         serialSendFeeder("$X_2,0,0,2,1,0,0,0,2,1,0,0,9,196\r\n"); // Slow 2500
         ui->p_lift2_constpos_down->setStyleSheet(backLightGreen);
-    } else
+    }
+    else
         err_msgbox("select speed first");
 }
-void MainWindow::on_p_lift2_constpos_down_released() {
+void MainWindow::on_p_lift2_constpos_down_released()
+{
     serialSendFeeder("$X_2,0,0,2,1,0,0,0,2,1,0,0,0,0\r\n"); // Stop Lift 2
     ui->p_lift2_constpos_down->setStyleSheet(backDefault);
 }
-void MainWindow::on_p_lift2_constpos_up_tilt_pressed() {
-    if (ui->check_lift2_constfast_up_tilt->isChecked()) {
+void MainWindow::on_p_lift2_constpos_up_tilt_pressed()
+{
+    if (ui->check_lift2_constfast_up_tilt->isChecked())
+    {
         serialSendFeeder(
                     "$X_2,0,0,2,1,0,0,0,2,2,0,3,208,144\r\n"); // Fast, lift2 tilt up 250000
         ui->p_lift2_constpos_up_tilt->setStyleSheet(backLightGreen);
-    } else if (ui->check_lift2_constslow_up_tilt->isChecked()) {
+    }
+    else if (ui->check_lift2_constslow_up_tilt->isChecked())
+    {
         serialSendFeeder(
                     "$X_2,0,0,2,1,0,0,0,2,2,0,0,9,196\r\n"); // Slow, lift2 tilt up 2500
         ui->p_lift2_constpos_up_tilt->setStyleSheet(backLightGreen);
-    } else
+    }
+    else
         err_msgbox("select speed first");
 }
-void MainWindow::on_p_lift2_constpos_up_tilt_released() {
+void MainWindow::on_p_lift2_constpos_up_tilt_released()
+{
     serialSendFeeder("$X_2,0,0,2,1,0,0,0,2,2,0,0,0,0\r\n"); // Stop Tilt 2
     ui->p_lift2_constpos_up_tilt->setStyleSheet(backDefault);
 }
-void MainWindow::on_p_lift2_constpos_dwn_tilt_pressed() {
-    if (ui->check_lift2_constfast_up_tilt->isChecked()) {
-        serialSendFeeder(
-                    "$X_2,0,0,2,1,0,0,0,2,2,255,252,47,112\r\n"); // Fast, lift2 tilt down
+void MainWindow::on_p_lift2_constpos_dwn_tilt_pressed()
+{
+    if (ui->check_lift2_constfast_up_tilt->isChecked())
+    {
+        serialSendFeeder("$X_2,0,0,2,1,0,0,0,2,2,255,252,47,112\r\n"); // Fast, lift2 tilt down
         // -25000
-        ui->p_lift2_constpos_dwn_tilt->setStyleSheet(backLightGreen);
-    } else if (ui->check_lift2_constslow_up_tilt->isChecked()) {
-        serialSendFeeder(
-                    "$X_2,0,0,2,1,0,0,0,2,2,255,255,246,60\r\n"); // Slow, lift2 tilt down
+        ui->p_lift2_constpos_down_tilt->setStyleSheet(backLightGreen);
+    }
+    else if (ui->check_lift2_constslow_up_tilt->isChecked()) {
+        serialSendFeeder("$X_2,0,0,2,1,0,0,0,2,2,255,255,246,60\r\n"); // Slow, lift2 tilt down
         // -2500
-        ui->p_lift2_constpos_dwn_tilt->setStyleSheet(backLightGreen);
-    } else
-        err_msgbox("select speed first");
+        ui->p_lift2_constpos_down_tilt->setStyleSheet(backLightGreen);
+    }
+    else err_msgbox("select speed first");
 }
-void MainWindow::on_p_lift2_constpos_dwn_tilt_released() {
+void MainWindow::on_p_lift2_constpos_dwn_tilt_released()
+{
     serialSendFeeder("$X_2,0,0,2,1,0,0,0,2,2,0,0,0,0\r\n"); // Stop Tilt 2
-    ui->p_lift2_constpos_dwn_tilt->setStyleSheet(backDefault);
+    ui->p_lift2_constpos_down_tilt->setStyleSheet(backDefault);
 }
-void MainWindow::on_radio_lift2_SMIF_clicked(bool checked) {
-    if (checked) {
-        ui->frame_Lift2_leica->hide();
+void MainWindow::on_radio_lift2_SMIF_clicked(bool checked)
+{
+    if (checked)
+    {
+        ui->frame_lift2_leica->hide();
         ui->frame_lift2_selectSMIF->show();
         ui->p_lift2_SMIF->hide();
         ui->push_lift2_store_2->setEnabled(1);
     }
 }
-void MainWindow::on_radio_lift2_default_clicked(bool checked) {
+void MainWindow::on_radio_lift2_default_clicked(bool checked)
+{
     if (checked) {
-        ui->frame_Lift2_leica->show();
+        ui->frame_lift2_leica->show();
         ui->frame_lift2_selectSMIF->hide();
         ui->push_lift2_store_2->setEnabled(1);
     }
 }
-void MainWindow::on_radio_lift2_notinstalled_clicked(bool checked) {
-    if (checked) {
-        ui->frame_Lift2_leica->hide();
+void MainWindow::on_radio_lift2_notinstalled_clicked(bool checked)
+{
+    if (checked)
+    {
+        ui->frame_lift2_leica->hide();
         ui->frame_lift2_selectSMIF->hide();
         ui->push_lift2_store_2->setEnabled(1);
     }
